@@ -1,0 +1,1606 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    font-family: "Poppins", sans-serif;
+    
+}
+
+.Maindiv {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgba(231, 237, 255, 1);
+    overflow: hidden;
+}
+
+.container-fluid {
+    flex-grow: 1;
+   overflow-y: auto; 
+    padding-left:4 ;
+    
+}
+
+.content {
+    position: relative;
+    top: 22px;
+    left: 0px;
+    height: auto;
+}
+
+.pmMainContainer {
+    background-color: white;
+    width: 90%;
+    padding-left: 20%;
+}
+
+.multipleselect-div .searchWrapper {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-height: 40px;
+    padding: 3.75px;
+    position: relative;
+}
+
+/* -----------------------------------------------Project Master------------------------------------------------- */
+
+.projectContainer {
+    display: -ms-inline-flexbox; /* Use standard flex display (no need for -webkit prefix) */
+    flex-direction: column;
+   
+  }
+  
+  /* For tablets (screens larger than 768px) */
+  @media (min-width: 768px) {
+    .projectContainer {
+      padding-top: 15px; /* Reduce top padding on tablets */
+      padding-bottom: 30%; /* Reduce bottom padding for better fit */
+      border-radius: 20%; /* Adjust border radius for larger screens */
+    }
+  }
+  
+  /* For mobile devices (screens smaller than 768px) */
+  @media (max-width: 768px) {
+    .projectContainer {
+      padding-top: 10px; /* Less padding from the top on small screens */
+      padding-bottom: 20%; /* Reduce bottom padding on mobile */
+      border-radius: 15%; /* Tighter border-radius on small screens */
+    }
+  }
+  
+  /* Extra small screens (less than 480px) */
+  @media (max-width: 480px) {
+    .projectContainer {
+      padding-top: 5px;  /* Minimal padding from the top on extra small screens */
+      padding-bottom: 10%; /* Further reduce bottom padding */
+      border-radius: 10%; /* Tighter border-radius */
+    }
+  }
+  
+
+.projectForm {
+    border-radius: 8px;
+   
+    top: 1;
+    background-color: #FFFFFF;
+    z-index: 1;
+    padding: 20px;
+    width: 99%;
+    height: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  
+  /* Ensure the container around the form allows scrolling */
+  .scroll-container {
+    max-height: 600px; /* Adjust this to your layout's needs */
+    overflow-y: scroll;
+  }
+ 
+  .scroll-container2 {
+    max-height: 400px; /* Adjust this to your layout's needs */
+    overflow-y: scroll;
+  }
+
+.tune-btn {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid;
+    border-color: rgba(20, 68, 99, 0.1);
+    margin-right: 15px;
+
+}
+
+.tune-png {
+    width: 18.18px;
+    height: 18.18px;
+    position: absolute;
+    top: 12px;
+    left: 13px;
+
+}
+
+
+.filter-png {
+    width: 18.18px;
+    height: 18.18px;
+    position: absolute;
+    top: 12px;
+    left: 13px;
+}
+
+.create-btn {
+    width: 178px;
+    height: 45px;
+    color: rgba(0, 193, 71, 1);
+    position: relative;
+    background-color:  #EDFFEA;
+    border: 1px solid;
+    border-radius: 100px;
+    border-color: rgba(0, 193, 71, 1);
+    display: flex;
+    margin-left: 72%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: smaller;
+}
+.history-btn {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .history-btn:hover {
+    color: #0056b3;
+  }
+  
+  .tag-btn {
+    background: #FC760533;
+    width:90px ;
+    border: 1px solid orange;
+    color: #FC7605;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+  
+  .tag-btn:hover {
+    background-color: darkorange;
+  }
+
+.add-png {
+    width: 14px;
+    height: 14px;
+    margin-right: 10px;
+}
+
+.create-btn p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 25px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    margin-left: 90;
+    margin-top:15px ;
+}
+
+
+.projectformHeading {
+    color: black;
+    height: 45px;
+    border-radius: 8px 8px 0px 0px;
+
+}
+
+.projectformHeading h5 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    text-align: left;
+    
+    margin-top: 15px;
+}
+
+.userformHeading h5 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 36px;
+    text-align: left;
+    margin-left: 20px;
+
+}
+
+.projectFormContainer {
+    flex-direction: row;
+    width: 100%;
+    padding-left: 25px;
+    align-items: center;
+}
+
+.projectFormContainer .row {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.projectFormContainer .form-group>input {
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 7px 23px;
+    color: grey;
+    background: #F8F9FF !important;
+}
+
+.projectFormContainer .form-group>select {
+    font-family: 'Poppins', sans-serif;
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 7px 23px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.projectFormContainer-button {
+    background: linear-gradient(90.96deg, #286587 -10.89%, #54DDFF 229.79%);
+    color: white;
+    border-radius: 25px;
+    border: none;
+    padding: 7px 23px;
+    margin-bottom: 10px;
+}
+
+.projectTable {
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    padding-bottom: 25px;
+    
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.view-icon {
+    width: 20px;
+    height: 14px;
+}
+
+.table {
+    margin-bottom: 0px;
+    width: 100%;
+
+}
+/* 
+.sticky-div {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 0;
+}
+
+.sticky-div-permission {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1;
+}
+
+.sticky-element {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: white;
+
+}
+
+.per-sticky {
+    z-index: 0;
+} */
+
+
+
+.projectTableHeading {
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: -webkit-sticky;
+    top: 0px;
+    z-index: 0;
+    
+}
+
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    font-size: larger;
+    font-weight: 500;
+    line-height: 37.68px;
+    text-align: left;
+    color: rgba(19, 32, 77, 1);
+    
+}
+
+.projectTableHeading>div {
+    padding: 9px 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.search-container {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dce4ec;
+    border-radius: 6px;
+    padding: 2px 10px;
+    width: 100%;
+    height: 44px;
+    
+    margin-bottom: 15px;
+    background-color: rgba(248, 249, 255, 1);
+
+}
+
+.search-container2 {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dce4ec;
+    border-radius: 6px;
+    padding: 2px 10px;
+    width: 46%;
+    height: 45px;
+    margin-left: 22px;
+    margin-right: 28px;
+    margin-bottom: 15px;
+    background-color: rgba(248, 249, 255, 1);
+    display: flex;
+    align-items: center;
+
+}
+.search-btn{
+  background-color: #286587;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  margin-left: 130%; /* Adds space between the input and button */
+  border-radius: 5px;
+  cursor: pointer;
+}
+.row2>* {
+    flex-shrink: 0;
+    width: 25%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)* .5);
+    padding-left: calc(var(--bs-gutter-x)* .5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.search-container1 {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    border: 1px solid #dce4ec;
+    border-radius: 6px;
+    padding: 2px 10px;
+    width: 96%;
+    height: 40px;
+    margin-left: 18px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+    background-color: rgba(248, 249, 255, 1);
+
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    flex: 1;
+    border-radius: 30px;
+    padding: 5px 10px;
+
+}
+
+.search_icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 15px;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd)>* {
+    --bs-table-color-type: var(--bs-table-striped-color);
+    --bs-table-bg-type: none !important;
+}
+.table thead th {
+    background-color:#EFF6FC !important;
+    color: rgba(17, 17, 17, 1);
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+    text-align: center;
+}
+
+.table-row td {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+    text-align: center;
+}
+
+  
+  .right-align {
+    text-align: right; /* Aligns content to the right */
+  }
+  
+  .center-align {
+    text-align: center; /* Aligns content to the center */
+  }
+  
+  .left-align {
+    text-align: left; /* Aligns content to the left */
+  }
+  
+
+
+
+
+
+.btn-closee {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-group>label {
+    font-family: 'Poppins', sans-serif;
+    font-size: smaller;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+}
+
+
+.projectformHeading h6 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 36px;
+}
+
+/* ...
+............................................end-projectmaster.................................... */
+
+
+
+/* ...................................role-master.................................... */
+.role-model-content {
+    background: #fff;
+    border-radius: 8px;
+    width: 30%;
+    max-width: 923px;
+    position: relative;
+}
+
+.role-toastify {
+    top: 0px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+
+
+
+.RoleformContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 90px;
+    align-items: center;
+    padding-left: 25px;
+}
+
+
+
+
+
+
+
+
+/* ...........................................user-master............................ */
+.Email-col {
+    max-width: 200px;
+
+    font-size: 5px;
+}
+
+.role-name {
+    color: black;
+    font-weight: 400;
+}
+
+/* ..................................................location-series................................................... */
+.LocationformContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 90px;
+    align-items: center;
+    padding-left: 25px;
+
+}
+
+
+
+.LocationformContainer .form-group>input {
+    border: 1px solid #CCCCCC;
+    color: black;
+
+    border-radius: 6px;
+    padding: 9px 23px;
+    font-weight: 400;
+
+}
+
+
+/* -------------------------------------------------------------------Add Location------------------------------------------------ */
+
+
+
+
+
+
+
+
+
+.location-master-btn {
+    background: linear-gradient(90.96deg, #286587 -10.89%, #54DDFF 229.79%);
+    color: white;
+    border-radius: 9px;
+    border: none;
+    padding: 10px 22px;
+    width: 51%;
+}
+
+
+/* -------------------------------------------------------------------Add Location------------------------------------------------ */
+
+
+
+
+
+
+
+
+
+
+.module-btn {
+    background: linear-gradient(90.96deg, #286587 -10.89%, #54DDFF 229.79%);
+    color: white;
+    border-radius: 9px;
+    border: none;
+    padding: 11px 23px;
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.actionIcons {
+    width: 17px;
+    height: 14px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+
+/* ---------------------------------------------------------------------Role Master--------------------------------------------------- */
+
+
+.css-tj5bde-Svg {
+    display: inline-block;
+    fill: currentColor;
+    line-height: 1;
+    stroke: black;
+    stroke-width: 0;
+}
+img, svg {
+    vertical-align: middle;
+}
+
+
+
+
+
+.searchWrapper {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    min-height: 38px;
+    padding: 7px;
+    position: relative;
+}
+
+/* ----------------------------------------------------Assign Location----------------------------------------------- */
+.Assign-tbody td {
+    padding-left: 20px;
+}
+
+.Assign-thead th {
+    padding-left: 20px;
+}
+
+.assignLocationFormContainer {
+    width: 100% !important;
+    padding-left: 25px;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+}
+
+.assign-loc-btn {
+    background: linear-gradient(90.96deg, #286587 -10.89%, #54DDFF 229.79%);
+    color: white;
+    border: none;
+    border-radius: 100px;
+    padding: 10px 22px;
+    width: 45%;
+    margin-top: 5px;
+}
+.row1>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    
+    padding-left: calc(var(--bs-gutter-x)* .5);
+    margin-top: var(--bs-gutter-y);
+}
+.new-btn {
+    background: linear-gradient(90.96deg, #286587 -10.89%, #54DDFF 229.79%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 22px;  /* Reduced padding for a smaller button */
+          /* Use auto width to fit the content */
+    font-size: 12px;   /* Smaller font size */
+    margin-top: 5px; 
+    cursor: pointer; 
+   /* Change cursor to pointer for better UX */
+}
+.new-button-container {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Minimal gap between elements */
+  }
+  
+  .quotations-text {
+    font-size: 14px; /* Adjust font size as needed */
+  }
+.settings-icon {
+    cursor: pointer;
+  }
+  mg, svg {
+    vertical-align: middle;
+    margin-inline-end: 84%;
+}
+
+
+
+.assignLocationFormContainer .form-group>input {
+    border: 1px solid #CCCCCC;
+    color: black;
+    border-radius: 6px;
+    padding: 9px 23px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+
+.dropdown {
+    background-color: #8EB3DD;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+    width: 96%;
+    margin: auto;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dropdown img {
+    cursor: pointer;
+}
+
+.checkboxSize {
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    /* Space between checkbox and text */
+}
+
+.userPermissionLabels {
+    flex: 1;
+    margin: 0;
+    /* Remove default margin of p element */
+}
+
+.dropdown-content {
+    /* display: none; */
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 96%;
+    margin: auto;
+}
+
+.custom-dropdown-content {
+    /* display: none; */
+    width: 96%;
+    margin: auto;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-table th,
+.custom-table td {
+   
+    border-bottom: 1px solid #ddd;
+}
+
+.custom-table th:first-child,
+.custom-table td:first-child {
+    width: 100%;
+    /* Adjust the width of the first column */
+}
+
+.custom-table th:not(:first-child),
+.custom-table td:not(:first-child) {
+    width: 10%;
+    /* Adjust the width of other columns */
+}
+
+.custom-table th {
+    background-color: #e1e5ee;
+    text-align: left;
+}
+
+.module {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.module input[type="checkbox"] {
+    margin-right: 10px;
+}
+.light-grey-placeholder::placeholder {
+    color: lightgrey; /* Set the placeholder color to light grey */
+}
+
+.module .permissions {
+    display: flex;
+    gap: 10px;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 34px;
+    border: 1px solid #ddd6d6;
+  }
+  
+  .knob {
+    position: absolute;
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #358aac;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+
+
+
+
+
+.book-now{
+    width: 95%;
+    
+}
+.car-dash{
+    background-color: linear-gradient(180.13deg, #BDE9FB -50.39%, #FEFFFF 105.85%);
+    border-color: 1px solid linear-gradient(180.13deg, #BDE9FB -50.39%, #FEFFFF 105.85%) ;
+    padding: none !important;
+    height: fit-content !important;
+    
+}
+
+
+.card-footer{
+    padding: none !important;
+    height: fit-content !important;
+}
+
+.rnd-scs{
+    background-color: white;
+    padding: 0 8px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    
+}
+.rnd-nscs{
+    background-color: #FFECEC;
+    padding: 0 3px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    
+}
+/* .card{
+    z-index: -1;
+} */
+
+/* --------------------------------------------------------User Permission------------------------------------------- */
+
+.save-permission-btn {
+    background: linear-gradient(90.96deg, #286587 -10.89%, #54DDFF 229.79%);
+    color: white;
+    width: 10%;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 100px;
+    margin-right: 23px;
+    margin-top: 10px;
+}
+
+.save-permission-btn:hover {
+    color: white;
+}
+
+.book-btn {
+    background: linear-gradient(90.96deg, #286587 -10.89%, #54DDFF 229.79%);
+    color: white;
+    width: 97%;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 100px;
+    margin: auto;
+    
+}
+
+.book-btn:hover {
+    color: white;
+}
+.driver-btn {
+    background: #FFFFFF80;
+    color: #2D7496; /* Text color is blue */
+    width: 97%;
+    border: 2px solid #2C7193; /* Add red border */
+    padding: 10px 22px;
+    border-radius: 100px;
+    margin: auto;
+}
+
+.driver-btn:hover {
+    color: #022d40; /* Text remains blue on hover */
+    border-color: #2C7193; /* Ensure the border stays red on hover */
+}
+
+.booknow-btn {
+    background: linear-gradient(90.96deg, #286587 -10.89%, #54DDFF 229.79%);
+    color: white;
+    width: 48%;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 100px;
+    margin: auto;
+    
+}
+
+.booknow-btn:hover {
+    color: white;
+}
+.cancel-btn {
+    background: #FFFFFF80;
+    color: #2D7496; /* Text color is blue */
+    width: 48%;
+    border: 2px solid #2C7193; /* Add red border */
+    padding: 10px 22px;
+    border-radius: 100px;
+    margin: auto;
+}
+
+.cancel-btn:hover {
+    color: #022d40; /* Text remains blue on hover */
+    border-color: #2C7193; /* Ensure the border stays red on hover */
+}
+
+.dwnld-btn {
+    background: #ECF5F8;
+    color: #2B6F91; /* Text color is blue */
+    display: inline-block; /* Ensure button width adapts to content */
+    height: 45px;
+    border: 1px solid #2C7193; /* Add blue border */
+    padding: 10px 22px;
+    border-radius: 100px;
+    margin-right: 7px;
+    white-space: nowrap; /* Prevent text from wrapping */
+    text-align: center; /* Ensure text is centered */
+    font-weight: 500;
+}
+
+.dwnld-btn:hover {
+    color: #022d40; /* Text remains blue on hover */
+    border-color: #2C7193; /* Ensure the border stays red on hover */
+}
+
+.addVehicle-btn {
+    background:  #286587 -10.89%;
+    color: white;
+    width: 50%;
+    height: 45px;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 100px;
+    margin-right: 18px;
+    
+}
+
+.addVehicle-btn-btn:hover {
+    color: white;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust width as necessary */
+    gap: 20px; /* Adjust the gap between cards */
+    padding: 20px; /* Optional: Add padding to the container */
+  }
+.text-danger {
+    --bs-text-opacity: 1;
+    color: rgb(234 18 18) !important;
+}
+.text-success{
+    --bs-text-opacity: 1;
+    color: #00C32D
+    !important; 
+
+}
+.car-dash{
+    background: linear-gradient(180.13deg, #BDE9FB -50.39%, #FEFFFF 105.85%); 
+    border-radius: "12px";
+    padding:none !important; 
+}
+.red-car{
+    background: linear-gradient(180.13deg, #BDE9FB -50.39%, #FEFFFF 105.85%); 
+    border: none !important;
+    
+}
+.center-img {
+    display: block;          /* Ensures the image is treated as a block-level element */
+    margin-left: auto;      /* Automatically calculate the left margin */
+    margin-right: auto;     /* Automatically calculate the right margin */
+    width: 150px;            /* Optional: set a fixed width or let it adjust based on the image */
+    height: 150px;           /* Optional: set a fixed height or let it adjust based on the image */
+    padding-top: 20px;      /* Add padding from the top */
+  }
+  .driver-row {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding-left: 7px; 
+    padding-right: 7px; 
+  }
+  .trip-row {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    font-weight: bold;
+  }
+
+  .detail-row {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding-left: 7px; 
+    padding-right: 7px; 
+    margin-right: 14px !important;
+  }
+
+  .driver-value {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-left: 50px !important;
+  }
+  
+/* .card-body{
+    background: linear-gradient(180.13deg, #BDE9FB -50.39%, #FEFFFF 105.85%); 
+    width: 100%;
+   
+    border-radius: 5px;
+   
+   
+} */
+.price-badge {
+    background-color: #FFFFFF; /* Light blue background similar to the image */
+    color: #000; /* Black text */
+    padding: 4px 10px; /* Padding for the badge */
+    border-radius: 50px; /* Rounded corners */
+    border: 1px solid #8DD3FF;
+    font: poppins;
+    font-size: 14px; /* Adjust font size */
+    display: inline-block; /* Ensure it's inline and not block level */
+  }
+/* .............................................content master............................................. */
+
+.form-group .react-tel-input .form-control {
+    position: relative;
+    font-size: smaller !important;
+    padding: 9px 23px;
+    letter-spacing: .01rem;
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
+    padding-left: 55px;
+    margin-left: 0;
+    
+    border: 1px solid #CACACA;
+    border-radius: 6px;
+    line-height: 25px;
+    width: 240px;
+    outline: none;
+    height: 40px;
+    color: grey !important;
+}
+
+.form-group .css-13cymwt-control {
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    cursor: default;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    min-height: 40px;
+    outline: 0 !important;
+    position: relative;
+    -webkit-transition: all 100ms;
+    transition: all 100ms;
+    background-color: #F8F9FF;
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    box-sizing: border-box;
+}
+
+/* .ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} */
+.light-placeholder::placeholder {
+    color: #D3D3D3; /* Light grey color for the placeholder */
+    opacity: 1;     /* Ensure full opacity for the placeholder */
+  }
+
+.userPermissionLabels {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-row td {
+    max-width: 290px;
+}
+
+.colour-p {
+    color: black;
+}
+
+.connection-string p {
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+/* .........................................................Home Page ..................................... */
+.HomeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 1);
+    height: 80vh;
+}
+
+.homepage-img {
+    width: 312.88px;
+    height: 203px;
+    background-image: url("../images/Group.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.homepage-img p {
+
+    width: 347px;
+    height: 28px;
+    position: relative;
+    top: 60px;
+    left: 70px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+
+}
+
+/* .................sticky table.................... */
+.tableFixHead {
+    overflow-y: auto;
+    height: 270px;
+}
+
+.tableFixHead thead th {
+    position: sticky;
+    top: 0px;
+}
+
+.tableFixHeaddd {
+    overflow-y: auto;
+    height: 430px;
+}
+
+.tableFixHeaddd thead th {
+    position: sticky;
+    top: 0px;
+}
+
+.stickyy-div {
+    position: sticky;
+    top: 0px;
+}
+
+.user-permission-scroll {
+    overflow-y: auto;
+    height: 460px;
+}
+
+/* ............................................Media query.......................................... */
+
+@media only screen and (  max-width: 1280px) {
+
+    .tableFixHeaddd {
+        overflow-y: auto;
+        height: 490px;
+    }
+    .tableFixHeaddd thead th {
+        position: sticky;
+        top: -2px;
+    }
+ 
+    .content {
+        transition: all 0.3s ease;
+        margin-left: 353px;
+        position: relative;
+        top: 26px;
+        left: 0px;
+        width: 72%;
+        height: auto;
+    }
+    .content.expanded {
+        margin-left: 78px;
+        width: 94%;
+    }
+
+     .form-control {
+        position: relative;
+        font-size: smaller !important;
+        padding: 9px 23px;
+        letter-spacing: .01rem;
+        margin-top: 8px !important;
+        margin-bottom: 0 !important;
+        padding-left: 55px;
+        margin-left: 0;
+        color: grey !important;
+        border: 1px solid #CACACA;
+        border-radius: 6px;
+        line-height: 25px;
+        width: 195px;
+        outline: none;
+        height: 57px !important;
+    }
+    .user-permission-scroll {
+        overflow-y: auto;
+        height: 520px;
+    }
+    .HomeContainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(255, 255, 255, 1);
+        height: 82vh;
+    }
+    .stickyy-div {
+        position: sticky;
+        top: -2px;
+    }
+    .tableFixHead {
+        overflow-y: auto;
+        height: 350px;
+    }
+    .form-group .css-hlgwow {
+        padding: 0px 5px;
+    }
+    .table>:not(caption)>*>* {
+        padding: .5rem;
+    }
+}
+
+@media only screen and (  max-width: 1024px){
+    .sidebar{
+        width: 330px;
+     
+    }
+    .pmOptions {
+        max-height: 550px;
+    }
+    .toggle-btn {
+        position: relative;
+        left: 45px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgba(57, 148, 182, 0.1);
+    }
+    .content {
+        transition: all 0.3s ease;
+        margin-left: 331px;
+        position: relative;
+        top: 15px;
+        left: 0px;
+        width: 68%;
+        height: auto;
+    }
+    .HomeContainer {
+        height: 80vh;
+    }
+    .content.expanded {
+        margin-left: 80px;
+        width: 92%;
+    }
+    .addvehicleform {
+        width: 100% !important;
+        margin-top: 40px;
+        padding-left: 25px;
+       display: flex;
+        flex-direction: row;
+        justify-content: space-between; 
+    }
+   
+      
+      
+      
+      .rounded-button {
+        border-radius: 100%; /* Makes the button circular */
+        padding: 10px 22px; /* Adjust padding for better spacing */
+      }
+      
+      
+      .price-badge {
+        background-color: #f0f0f0;
+        padding: 6px 12px;
+        border-radius: 12px;
+        font-weight: bold;
+      }
+      
+      .car-image {
+        width: 100px; /* Adjust this size as needed */
+      }
+      
+      .icon-group img {
+        width: 19px; /* Adjust the size of icons */
+        margin-right: 5px;
+      }
+      
+      .badge-group .badge {
+        margin-right: 10px;
+      }
+      
+      .icon-btn {
+        width: 15px;
+        cursor: pointer;
+      }
+      
+      .btn-outline-primary {
+        border-radius: 20px;
+        font-weight: bold;
+      }
+      
+}
+
+.justify-items-space{
+    justify-content: space-between !important;
+}
+
+  /* The switch - the container */
+
+  .form-switch {
+    padding-left: 10px !important;
+}
+  
+  
+  /* When the checkbox is checked, change background */
+  input:checked + .slider {
+    background-color: #eff4f0; /* Green when checked */
+  }
+  
+  /* Move the slider handle when checked */
+  input:checked + .slider::before {
+    transform: translateX(26px);
+  }
+  
+  /* Add a shadow effect to the slider */
+  
+  .round-icon {
+    display: inline-block;
+    background-color: #f0f0f0; /* Background color */
+    border-radius: 50%; /* Make it round */
+    padding: 15px; /* Space around the icon */
+    text-align: center; /* Center align the icon */
+      
+} 
+.date-filter-container {
+  display: flex;
+  align-items: center;
+  
+}
+
+.input-label {
+  font-weight: bold;
+  margin-right: 10px;
+  font-family: poppins;
+  font-size: large;
+}
+
+.date-input-group {
+  display: flex;
+  align-items: center;
+  
+}
+
+.date-input-wrapper {
+  position: relative;
+  margin-right: 3px;
+  z-index: 10;
+}
+.react-datepicker__tab-loop {
+    z-index: 9999 !important; /* Ensure the date picker itself has a very high z-index */
+  }
+  
+.date-input {
+  padding: 5px 10px;
+  padding-right: 30px; /* Space for icon */
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  width: 150px;
+  align-items: center;
+  background-color: #fff;
+  
+}
+.date-icon {
+  position: absolute;
+  top: 7px;
+  left: 120px;
+  cursor: pointer;
+  color: #2A6C8E;
+  font-size: 16px;
+  height: 18px;
+}
+.date-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+
+.select-wrapper {
+  margin-right: 10px;
+ 
+}
+.select-location {
+  padding: 5px 3px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  width: 166px;
+  appearance: show; /* Hide default dropdown arrow */
+  background-color: white;
+  height: 36px;
+  color: grey; /* Set text color to grey */
+}
+
+  .availability-container {
+    display: flex;
+    align-items: center;
+  }
+  .availability-btn {
+    padding: 8px 14px;
+    background-color: #227ba7;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 30px;
+  }
+  
+  .availability-btn:hover {
+    background-color: #1a5f87;
+  }
+ 
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columns */
+    gap: 20px;
+    padding: 20px;
+  }
+ 
+  
+  
+  
+  .driver-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    margin-left: 70px;
+  }
+  
+  
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .status-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .details-link {
+    color: #007bff;
+    cursor: pointer;
+  }
+  
+  
+  .custom-color {
+    color: #13204D;
+  }
+  
+  
+  /*------------------*/
+ 
+  
+  
+  
+  .driver-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .driver-label {
+    color: #555;
+    margin-inline-end: 112px;
+  }
+  
+  .driver-value {
+    color: #333;
+  }
+  
+  .status-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+  }
+  
+  .details-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .details-link:hover {
+    text-decoration: underline;
+  }
+  
+  .trip-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+  .trip-info p {
+    margin: 5px 10px;
+  }
+  .download-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .download-btn:hover {
+    background-color: #0056b3;
+  }
+  .custom-line {
+  height: 2px;                 /* Line thickness */
+  background-color: #ccc;       /* Line color */
+  width: 108%;                  /* Full width */
+               /* Vertical spacing (top/bottom margin) */
+}

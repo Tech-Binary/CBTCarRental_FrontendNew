@@ -1,0 +1,235 @@
+.pmNavbar {
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 72px;
+}
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000; 
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+.pmLogoContainer {
+    display: flex;
+    align-items: center;
+
+}
+
+.pmLogoContainer .cbt-logo {
+    width: 224px;
+    height: 40px;
+    margin-right: 25px;
+    position: relative;
+    left: 31px;
+}
+
+.toggle-btn {
+    position: relative;
+    left: 65px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(57, 148, 182, 0.1);
+
+}
+.filter-btn {
+    position: relative;
+    bottom: 9px;
+    left: 4px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%; /* Ensures the button and border are circular */
+    border: 2px solid #1444631A; /* Thin rounded border with some color */
+    background-color: rgba(255, 255, 255, 0.5); /* Light background color */
+    
+    cursor: pointer; /* Shows pointer on hover */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+    display: flex; /* Center the icon inside the button */
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-btn:hover {
+    background-color: rgba(255, 255, 255, 0.8); /* Brighten the background on hover */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
+}
+
+/* Optional: Adjust the icon inside the button */
+.filter-btn i {
+    font-size: 18px; /* Adjust size of the icon inside the button */
+    color: rgba(0, 123, 255, 0.8); /* Add color to the icon */
+}
+
+.vector-icon {
+    width: 16px;
+    height: 11px;
+    position: absolute;
+    top: 15px;
+    left: 12px;
+    color: rgba(43, 111, 145, 1);
+
+}
+
+.active-tab {
+    position: relative;
+    left: 110px;
+    top: 8px;
+}
+
+.active-tab p {
+    font-family: "Poppins", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: rgba(43, 111, 145, 1);
+}
+
+.search_input {
+
+    border-radius: 25px;
+    width: 300px;
+    height: 50px;
+    border: 1px solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    background-color: rgba(57, 148, 182, 0.04);
+}
+
+.search {
+    position: relative;
+    top: 0px;
+    right: 40px;
+}
+
+.notify-btn {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(57, 148, 182, 0.1);
+}
+
+.notify {
+
+    width: 22px;
+    height: 25px;
+    position: absolute;
+    top: 12px;
+    left: 14px;
+
+}
+
+.log-btn {
+    width: 47px;
+    height: 44px;
+    position: relative;
+    left: 15px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(57, 148, 182, 0.1);
+}
+
+
+.logout {
+    width: 20px;
+    height: 19px;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+}
+
+.pmLogoutBtn {
+    display: flex;
+    align-items: center;
+    padding-right: 25px;
+
+}
+
+/* .................. */
+.user-dropdown {
+    width: 201px;
+    height: 121px;
+    border-color: #000; 
+    position: absolute;
+    right: 19px;
+    top: 75px;
+    background-color: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    z-index: 22;
+  }
+  
+  .user-info {
+    /* display: flex; */
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .user-icon {
+    position: absolute; 
+    top: 21px;
+    left: 21px;
+    width: 16px;
+    height: 15px;
+  }
+  
+  .username {
+    height: 28px;
+    position: absolute;
+    top: 16px;
+    left: 46px;
+    font-size: 18px;
+    font-weight: 400;
+    color: #333;
+  }
+  
+  .logout-button {
+    position: absolute; 
+    top: 60px;
+    left: 24px;
+    width: 157px;
+    height: 40px;
+    padding: 6px 23px 6px 24px;
+    background-color: #ff6d00;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .logout-icon {
+    width: 14px;
+    height: 16px;
+    margin-left: 8px;
+  }
+  .logout-button span{
+    font-family: 'poppins', sans-serif; 
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: -0.02em;
+    text-align: left;
+  }
+  .css-tj5bde-Svg indicatorContainer{
+    margin-right: 23px !important;
+    
+  }
+  /* header.css */
+

@@ -1,0 +1,165 @@
+/* Style for the outer div */
+.login-div {
+    background-image: url("/public/assets/images/bbtbg.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-sub-div {
+    display: flex;
+    width: 70%; 
+    height: 70%;
+    max-width: 1200px; 
+    background-color: white;
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.login-heading{
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.login-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f7f7f7; 
+}
+
+.login-left img {
+    max-width: 55%;
+    height: auto;
+   margin-top: 40px;
+}
+
+.login-left form {
+    width: 100%;
+}
+
+.logi-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+}
+
+.logi-right img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.loading-spinner {
+    margin-top: 10px;
+}
+.login-form-div{
+    margin-top: 40px;
+    width: 80%;
+}
+.form-input{
+    width: 100%;
+margin-bottom: 20px;
+padding: 6px;
+padding-left: 15px;
+border-radius: 5px;
+border: 1px solid;
+border-color:rgba(220, 223, 235, 1);
+}
+.remember-container label{
+    color: black;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.remember-container .Forgot-password{
+    font-weight: 500;
+    text-decoration: none;
+    color:rgba(27, 44, 193, 1) ;
+}
+ .login-btn{
+    background: linear-gradient(90.96deg, #286587 -10.89%, #54DDFF 229.79%);
+    width: 100%;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 50px;
+    border: none;
+}
+.loading-message{
+    font-weight: 600;
+    color:rgba(27, 44, 193, 1);
+    font-size: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+/* Sign-up prompt */
+.signup-prompt {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+.signup-link {
+    color: rgba(27, 44, 193, 1);
+    text-decoration: none;
+    font-weight: 500;
+}
+.input-container {
+    position: relative;
+  }
+  
+  .toggle-password {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #2e2521; 
+    cursor: pointer;
+  }
+  * {
+    caret-color: transparent; 
+  }
+  
+  input,
+  textarea {
+    caret-color: grey; 
+  }
+
+  .forgot-password-container{
+    background-image: url("/public/assets/images/bbtbg.png");
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .forgot-password-container-subdiv{
+    display: flex;
+    width: 70%; 
+    height: 70%;
+    max-width: 1200px; 
+    background-color: white;
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  .ChangePassword-div{
+    
+    justify-content: center;
+    align-items: center;
+  }

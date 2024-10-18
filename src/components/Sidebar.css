@@ -1,0 +1,471 @@
+.col-md-3 {
+    flex: 0 0 auto;
+}
+
+.pmOptions {
+    background-color: #fff;
+    flex-wrap: nowrap;
+    height: 100vh;
+    max-height: 650px;
+    overflow-y: auto;
+    padding-top: 5px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 60px
+}
+
+::-webkit-scrollbar {
+    height: 2px;
+    width: 2px;
+    border-radius: 20px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-track {
+    background: #73BFDB !important;
+}
+
+.sidebar {
+    background-color: #fff;
+    border-right: 1px solid #e6ecf5;
+    flex-wrap: nowrap;
+    height: 100vh;
+    position: fixed;
+    transition: all .3s ease;
+    width: 345px;
+    z-index: 5;
+    padding-bottom: 60px;
+}
+
+.sidebar.closed {
+    width: 80px;
+}
+
+.sidebar.closed .nav-item {
+    width: 100%;
+}
+
+.toggle-btn:focus {
+    outline: none;
+}
+
+/* Adjustments for content area */
+.content {
+    transition: all 0.3s ease;
+    margin-left: 365px;
+
+}
+
+.content.expanded {
+    margin-left: 83px;
+    width: 94%;
+}
+
+/* .nav-tabs {
+    border-bottom: none;
+} */
+
+/* .nav-img-checklist-driver {
+    transition: filter 0.3s ease;
+    height: 16px;
+    width: 16px;
+} */
+/* 
+.nav-img-legal-document-upload {
+    transition: filter 0.3s ease;
+    height: 16px;
+    width: 16px;
+} */
+/* 
+.nav-img-location-master {
+    transition: filter 0.3s ease;
+    height: 16px;
+    width: 14px;
+} */
+/* 
+.nav-img-module-master {
+    transition: filter 0.3s ease;
+    height: 14px;
+    width: 14px;
+} */
+
+/* .nav-img-administration {
+    transition: filter 0.3s ease;
+    height: 15px;
+    width: 15px;
+} */
+/* 
+.nav-img-seriesmaster {
+    transition: filter 0.3s ease;
+    height: 15px;
+    width: 17px;
+} */
+
+/* .nav-img-assign-location {
+    transition: filter 0.3s ease;
+    height: 16px;
+    width: 14px;
+} */
+/* 
+.nav-img-content-master {
+    transition: filter 0.3s ease;
+    height: 15px;
+    width: 15px;
+} */
+
+/* .nav-img-customer-master {
+    transition: filter 0.3s ease;
+    height: 15px;
+    width: 15px;
+} */
+
+/* .nav-img-supplier-master {
+    transition: filter 0.3s ease;
+    height: 15px;
+    width: 18px;
+} */
+
+/* .nav-img-Assign-Form {
+    transition: filter 0.3s ease;
+    height: 15px;
+    width: 16px;
+} */
+
+/* .nav-img-Client-Registration {
+    transition: filter 0.3s ease;
+    height: 15px;
+    width: 19px;
+} */
+
+.nav-link span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 400;
+    font-weight: 400;
+    line-height: 28.26px;
+    text-align: center;
+    position: relative;
+    left: 20px;
+}
+
+.nav-link.active img {
+    filter: invert(1) brightness(2);
+}
+
+.nav-link:hover img {
+    filter: invert(1) brightness(2);
+}
+
+
+.nav-link {
+    color: black !important;
+    align-content: end;
+    width: 340px;
+    height: 50px;
+    position: relative;
+    left: 9px;
+    margin-top: 4px;
+}
+
+.nav-link img{
+    width: 25px;
+}
+
+.nav-link.active {
+    width: 301px;
+    
+    position: relative;
+    left: 4px;
+    border-radius: 10px;
+    background: linear-gradient(90.96deg, #034366 -10.89%, #54DDFF 229.79%) !important;
+    color: white !important;
+
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+    border: none;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+}
+
+.nav-link:hover {
+    border-radius: 10px;
+    background: #73BFDB !important;
+    height: 50px;
+    color: white !important;
+    cursor: pointer;
+}
+
+.submenu .nav-link.active img {
+    filter: invert(1) brightness(2);
+}
+
+#vectoruser-master {
+    height: 12px;
+    width: 12px;
+    margin-left: 61px;
+    filter: grayscale(100%) brightness(0%) contrast(100%);
+}
+
+#vectorrole-master {
+    height: 12px;
+    width: 12px;
+    margin-left: 62px;
+    filter: grayscale(100%) brightness(0%) contrast(100%);
+}
+
+#vectoruser-permission {
+    height: 12px;
+    width: 12px;
+    margin-left: 28.5px;
+    filter: grayscale(100%) brightness(0%) contrast(100%);
+}
+
+#vectorlocation-series {
+    height: 12px;
+    width: 12px;
+    margin-left: 43px;
+    filter: grayscale(100%) brightness(0%) contrast(100%);
+}
+#vectorbbt-user-master{
+    height: 12px;
+    width: 12px;
+    margin-left: 28px;
+    filter: grayscale(100%) brightness(0%) contrast(100%);
+}
+
+
+
+ .roleimg {
+    transition: filter 0.3s ease;
+    height: 15px;
+    width: 13px;
+    margin: 6px;
+    margin-right: 15px;
+}
+.exportimg {
+    transition: filter 0.3s ease;
+    height: 15px;
+    width: 13px;
+    margin: 6px;
+    margin-left: 15px;
+}
+#roleDownarrow {
+    height: 7px;
+    width: 12px;
+    margin-left: 40px;
+}
+
+#Downarrow {
+    height: 7px;
+    width: 12px;
+    margin-left: 90px;
+}
+
+#Downarrow {
+    height: 7px;
+    width: 12px;
+    margin-left: 101.25px;
+}
+
+
+.dropdown {
+    height: 54px;
+
+}
+
+.box {
+    position: fixed;
+    top: 112px;
+    left: 80px;
+    width: 274px !important;
+    height: calc(96vh - 60px);
+    background: #FFF0E3;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    border-radius: 0px 16px 16px 0px;
+    overflow-y: auto;
+    padding: 0px;
+    padding-left:unset !important;
+}
+
+.box.active {
+    transform: translateX(0);
+    z-index: 999;
+}
+.box.row>* {
+    flex-shrink: 0;
+    width: 18%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)* .5);
+    padding-left: calc(var(--bs-gutter-x)* .5);
+    margin-top: var(--bs-gutter-y);
+}
+
+.box-header {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 46px;
+    width: 274px;
+    background-color: rgba(252, 118, 5, 1);
+    padding: 13px 12px;
+}
+
+.box-header h3 {
+    color: white;
+    margin-left: -7px;
+    margin-bottom: 0px;
+    font-size: 15px;
+    font-weight: bold;
+ }
+
+.close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.adm-submenu-img {
+    margin-left: 29px;
+    margin-right: 20px;
+    width: 15px;
+    height: 13.24px;
+}
+.bbt-user-img{
+    margin-left: 29px;
+    margin-right: 20px;
+    width: 13.5px;
+    height: 15.24px;
+}
+.submenu-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: rgba(255, 233, 215, 1) !important;
+    color: rgb(14, 14, 14) !important;
+    width: 273px;
+    height: 50px;
+    margin-left: 10px 15px 10px 0px;
+    text-decoration: none;
+}
+
+
+
+.submenu-item:hover{
+    background-color: #fcbf56 !important;
+    border-radius: 5% !important;
+}
+
+.arrow-icon {
+    margin-left: auto;
+}
+
+.sub-submenu a {
+    display: flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    padding: 8px;
+    height: 40px;
+    margin-top: 4px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.sub-submenu a:hover {
+    display: flex;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    padding: 0px;
+    background-color: #F1B67F;
+    border-radius: 8px;
+    margin-left: 8px;
+    margin-right: 8px;
+    margin-top: 4px;
+    height: 40px;
+}
+
+.dropdown.active {
+    background-color: rgba(243, 153, 68, 1);
+    border-radius: 8px;
+    margin-top: 4px;
+    margin-left: 8px;
+    margin-right: 8px;
+
+}
+
+.sub-submenu a:hover .adm-submenu-img {
+    margin-left: 38px;
+}
+.sub-submenu a:hover .bbt-user-img {
+    margin-left: 38px;
+}
+.dropdown.active .bbt-user-img {
+    margin-left: 30px;
+}
+
+.dropdown.active .adm-submenu-img {
+    margin-left: 30px;
+}
+
+.sidebar.closed .nav-item {
+    position: relative;
+}
+
+.sidebar.closed .nav-link {
+    width: 48px;
+}
+
+.hover-box {
+    position: fixed;
+    left: 68px;
+    background-image: url("../images/REC.png");
+    background-repeat: no-repeat;
+    border: none;
+    color: white;
+    padding-left: 17px;
+    padding-right: 9px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    z-index: 6;
+    width: auto;
+    display: inline-block;
+}
+
+.vl {
+    position: relative;
+    border-left: 1px solid grey;
+    height: 90px;
+    left: 20.5px;
+    z-index: 0;
+}
+
+.Ellips {
+    position: relative;
+    left: 14.25px;
+    width: 10px;
+    height: 10px;
+}
+
+.dropdown.active .Ellips {
+    display: block;
+}
+
+.dropdown .Ellips {
+    display: none;
+}
+.dropdownAdministration.active {
+    background-color: rgba(243, 153, 68, 1);
+    border-radius: 8px;
+    margin-top: 4px;
+    margin-left: 8px;
+    margin-right: 8px;
+}

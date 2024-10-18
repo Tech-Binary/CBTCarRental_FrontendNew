@@ -1,0 +1,15 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-item::marker{
+    display: none !important;
+}
+* {
+    caret-color: transparent; 
+  }
+  
+  input,
+  textarea {
+    caret-color: grey; 
+  }
