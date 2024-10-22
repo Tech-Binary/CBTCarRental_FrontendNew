@@ -35,9 +35,10 @@ function LegalDocumentUpload() {
         <div className="tab-pane fade active show">
           <div className="projectContainer">
             <div className="projectForm bg-light">
-              <div>
-                <h5 className="title">Legal Document-Upload</h5>
-              </div>
+              <div className="d-flex justify-content-between align-items-center">
+  <h5 className="title">Legal Document-Upload</h5>
+  <button className="upload-btn">+ Add Document</button>
+</div>
               <div>
                 <form>
                   <br />

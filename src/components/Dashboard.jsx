@@ -20,10 +20,11 @@ function Dashboard() {
       label: "Dashboard",
       icon: "dash.svg",
       path: "with-driver",
+     
     },
     {
-      id: "vehicle-management",
-      label: "Vehicle:Add/Change/Remove",
+      id: "Vehicle:Add/Change/Remove",
+      label: "Vehicle-Management",
       icon: "add.svg",
       isDropdown: true,
       children: [
@@ -73,8 +74,8 @@ function Dashboard() {
     },
     // New menu item for Vehicle Maintenance with its own submenu
     {
-      id: "driver-maintenance",
-      label: "Driver: Add/Change/Remove",
+      id: "Driver: Add/Change/Remove",
+      label: "Driver-Managemengt",
       icon: "driver.svg",
       className: "nav-img-Vehicle",
       isDropdown: true,
@@ -110,7 +111,7 @@ function Dashboard() {
       ],
     },
     {
-      id: "client",
+      id: "Client Information",
       label: "Client Information",
       icon: "client.svg",
       className: "nav-img-Vehicle",
@@ -126,7 +127,7 @@ function Dashboard() {
       ],
     },
     {
-      id: "price",
+      id: "Price Plan",
       label: "Price Plan",
       icon: "price.svg",
       className: "nav-img-Vehicle",
@@ -142,7 +143,7 @@ function Dashboard() {
       ],
     },
     {
-      id: "Booking",
+      id: "Booking Pannel",
       label: "Booking Pannel",
       icon: "booking.svg",
       className: "nav-img-Vehicle",
@@ -192,7 +193,7 @@ function Dashboard() {
           onMouseLeave={() => setHoverTab(null)}
         >
           <div
-            className={`nav-link d-flex justify-items-space align-items-center py-2 nav-link-dropdown ${
+            className={`nav-link d-flex justify-items-space align-items-center  nav-link-dropdown ${
               activeBox === item.id ? "active" : ""
             }`}
             onClick={() => handleMenuItemClick(item.id)}
@@ -209,7 +210,7 @@ function Dashboard() {
               <img
                 src="/assets/images/Down.png"
                 alt="dropdown"
-                style={{ width: "15px" }}
+                style={{ width: "12px" }}
               />
             )}
             {!isSidebarOpen && hoverTab === item.label && (
@@ -229,14 +230,13 @@ function Dashboard() {
       >
         <NavLink
           className={({ isActive }) =>
-            `nav-link py-3 d-flex justify-items-space align-items-center dropdown ${
-              isActive || activeTab === item.id ? "active" : ""
+            `nav-link d-flex justify-items-space align-items-center dropdown ${
+              isActive ? "active" : ""  // Will make the link active based on the current route
             }`
           }
           id={`${item.id}-tab`}
           to={item.path}
           onClick={() => handleLinkClick(item.id)}
-          style={{justifyContent:"center"}}
         >
           <div>
             <img
@@ -252,6 +252,7 @@ function Dashboard() {
         </NavLink>
       </li>
     );
+    
   };
 
   const handleMenuItemClick = (boxId) => {
@@ -271,7 +272,7 @@ function Dashboard() {
     return (
       <div className={`box ${activeBox ? "active" : ""}`} id="box">
         <div className="box-header">
-          <h3>{activeMenu.label}</h3>
+          <h3>{activeMenu.id}</h3>
           <button className="close" onClick={() => setActiveBox(null)}>
             ×
           </button>

@@ -1,6 +1,7 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useEffect} from "react";
 import DatePicker from "react-datepicker";
 import Card from "react-bootstrap/Card";
+import axios from "axios";
 import { Calendar } from "lucide-react";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
@@ -10,13 +11,48 @@ function WithDriver() {
   const [isChecked, setIsChecked] = useState(false);
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
+  const [vehicleName, setVehicleName] = useState("");
+  const [branchId, setBranchId] = useState(""); // State for selected branch ID
+  const [branches, setBranches] = useState([]); // State for branch list
+  const [vehicles, setVehicles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);                                              
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        
+        // const branchResponse = await axios.get("https://cbtcarrentalapi.blueberry-travel.com/api/");
+        // setBranches(branchResponse.data || []);
+
+       
+        const vehicleResponse = await axios.get("https://cbtcarrentalapi.blueberry-travel.com/api/Vehicle");
+        console.log("Vehicle API Response:", vehicleResponse.data);
+        setVehicles(vehicleResponse.data || []);
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleBranchChange = (e) => {
+    setBranchId(e.target.value);
+    console.log("Selected Branch ID:", e.target.value);
+  };
+
 
   const handleToggle = () => {
     const newState = !isChecked;
     setIsChecked(newState);
     if (newState) {
-      // Navigate to the "Without Driver" page
+      
       navigate("/dashboard/without-driver");
     }
   };
@@ -24,7 +60,7 @@ function WithDriver() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  // Custom input for DatePicker
+  
   const CustomInput = forwardRef(({ value, onClick, placeholder }, ref) => (
     <div className="date-input-wrapper">
       <input
@@ -39,7 +75,6 @@ function WithDriver() {
     </div>
   ));
   const handleBookDriver = () => {
-    
     navigate("/dashboard/driveravailability-page");
   };
   return (
@@ -81,10 +116,22 @@ function WithDriver() {
                         />
                       </div>
                       <div className="select-wrapper">
-                        <select className="select-location">
-                          <option value="">Select Location</option>
-                          <option value="location1">Location 1</option>
-                          <option value="location2">Location 2</option>
+                      <select
+                          className="select-location"
+                          id="branchId"
+                          value={branchId} // Bind selected branchId to the select
+                          onChange={handleBranchChange} // Update branchId on change
+                          required
+                        >
+                          <option value="0" disabled>
+                            Select Location
+                          </option>
+                          {branches.map((branch) => (
+                            <option key={branch.branchId} value={branch.branchId}>
+                              {branch.name}{" "}
+                              {/* Show branch name in the options */}
+                            </option>
+                          ))}
                         </select>
                       </div>
                       <button className="availability-btn me-1">
@@ -167,87 +214,85 @@ function WithDriver() {
                   className="search_icon"
                 />
               </div>
-
               <div className="row">
-                <div className="col-md-4 ">
-                <Card className="car-dash" >
-  <div className="d-flex flex-row p-2 align-items-between">
-   
-    <div
-      className="col-md-5 justify-content-start pt-5 p-0"  
-     
-    >
-      <Card.Img
-        variant="left"
-        src="/assets/images/icons/car.png"
-        style={{width:"105%"}}
-      />
-    </div>
-    <div className="col-md-7 d-flex flex-column justify-content-start ms-1 p-0">    
-      <Card.Body className="pt-4">
-        <Card.Title className="mb-3 d-flex align-items-center text-start">
-          <img
-            src="/assets/images/icons/bmw.png"
-            className="me-2"
-            alt="BMW logo"
-          />
-          <strong>BMW X5</strong>
-        </Card.Title>
-        <p className="mb-2 text-start">
-          <strong>xDrive 30d Sport</strong>
-        </p>
-        <div className="d-flex align-items-start mb-2">
-          <span>Live Status:</span>
-          <span className="rnd-scs d-flex align-items-center">
-            <img
-              src="/assets/images/icons/avlbl.svg"
-              alt="Available"
-              className="me-2"
-            />
-            <span className="text-success">Available</span>
-          </span>
-        </div>
-        <a
-          href="#"
-          className="d-flex align-items-center mt-3"
-          style={{ textDecoration: "none" }}
-        >
-          <img
-            src="/assets/images/icons/download(.).png"
-            alt="Download"
-            className="me-3"
-          />
-          <span>Download Details</span>
-        </a>
-        <p className="text-lg font-bold mt-3 text-start d-flex align-items-start">
-          <img
-            src="/assets/images/icons/currency_rupee_circle.svg"
-            alt="Rupee"
-            className="me-2 pt-1"
-            style={{ width: "20px", height: "20px" }} // Adjust the size as needed
-          />
-
-          <span style={{ color: "#13204DCC" }}>
-            <strong>INR 300/hr</strong>
-          </span>
-        </p>
-      </Card.Body>
-    </div>
-  </div>
-  <button
-    className="driver-btn"
-    onClick={handleBookDriver}
-    type="button"
-  >
-    Select Driver
-  </button>
-  <Card.Footer className="w-100 d-flex justify-content-between mt-3 p-1 text-muted">
-    <small>Insurance Exp. 01-01-2024</small>
-    <small>Registration Exp. 01-01-2024</small>
-  </Card.Footer>
-</Card>
-
-                </div>
+                {vehicles.length > 0 ? (
+                  vehicles.map((vehicle) => (
+                    <div className="col-md-4" key={vehicle.id}>
+                      <Card className="car-dash">
+                        <div className="d-flex flex-row p-2 align-items-between">
+                          <div className="col-md-5 justify-content-start p-0">
+                            <Card.Img
+                              variant="left"
+                              src={vehicle.mainPhoto || "/assets/images/icons/car.png"}
+                              style={{width:"100%", marginBottom: "0"}}
+                            />
+                          </div>
+                          <div className="col-md-7 d-flex flex-column justify-content-start ms-1 p-0">
+                            <Card.Body className="pb-0">
+                              <Card.Title className="mb-3 d-flex align-items-center text-start">
+                                <strong>{vehicle.vehicleName || "Vehicle Name"}</strong>
+                              </Card.Title>
+                              <p className="mb-2 text-start">
+                                <strong>{vehicle.model || "Model Information"}</strong>
+                              </p>
+                              <div className="d-flex align-items-start mb-2">
+                                <span>Live Status:</span>
+                                <span className="rnd-scs d-flex align-items-center">
+                                  <img
+                                    src="/assets/images/icons/avlbl.svg"
+                                    alt="Available"
+                                    className="me-2"
+                                  />
+                                  <span className="text-success">
+                                    {vehicle.liveStatus || "Available"}
+                                  </span>
+                                </span>
+                              </div>
+                              <a
+                                href="#"
+                                className="d-flex align-items-center mt-3"
+                                style={{ textDecoration: "none" }}
+                              >
+                                <img
+                                  src="/assets/images/icons/download(.).png"
+                                  alt="Download"
+                                  className="me-3"
+                                />
+                                <span>Download Details</span>
+                              </a>
+                              <p className="text-lg font-bold mt-3 mb-0 text-start d-flex align-items-start">
+                                <img
+                                  src="/assets/images/icons/currency_rupee_circle.svg"
+                                  alt="Rupee"
+                                  className="me-2 pt-1"
+                                  style={{ width: "20px", height: "20px" }}
+                                />
+                                <span style={{ color: "#13204DCC" }}>
+                                  <strong>INR 300/hr</strong>
+                                </span>
+                              </p>
+                            </Card.Body>
+                          </div>
+                        </div>
+                        <button
+                          className="driver-btn mt-2"
+                          onClick={handleBookDriver}
+                          type="button"
+                        >
+                          Select Driver
+                        </button>
+                        <Card.Footer className="w-100 d-flex justify-content-between mt-3 p-1 text-muted">
+                          <small>Insurance Exp. {vehicle.insuranceNo || "N/A"}</small>
+                          <small>Registration Exp. {vehicle.registrationExpire || "N/A"}</small>
+                        </Card.Footer>
+                      </Card>
+                    </div>
+                  ))
+                ) : (
+                  <div className="col-12 text-center">
+                    <p>No vehicles available</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

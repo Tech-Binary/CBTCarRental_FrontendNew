@@ -79,7 +79,6 @@ body{
 
 .projectForm {
     border-radius: 8px;
-   
     top: 1;
     background-color: #FFFFFF;
     z-index: 1;
@@ -141,6 +140,20 @@ body{
     border-color: rgba(0, 193, 71, 1);
     display: flex;
     margin-left: 72%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: smaller;
+}
+
+.upload-btn{
+  width: 170px;
+    height: 45px;
+    color: rgba(0, 193, 71, 1);
+    background-color: #EDFFEA;
+    border: 1px solid rgba(0, 193, 71, 1);
+    border-radius: 100px;
+    display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -235,7 +248,7 @@ body{
     border: 1px solid #CCCCCC;
     border-radius: 6px;
     padding: 7px 23px;
-    color: grey;
+    color: rgb(145, 141, 141);
     background: #F8F9FF !important;
 }
 
@@ -628,16 +641,14 @@ body{
 /* ---------------------------------------------------------------------Role Master--------------------------------------------------- */
 
 
-.css-tj5bde-Svg {
+/* .css-tj5bde-Svg {
     display: inline-block;
     fill: currentColor;
     line-height: 1;
     stroke: black;
     stroke-width: 0;
-}
-img, svg {
-    vertical-align: middle;
-}
+} */
+
 
 
 
@@ -675,7 +686,7 @@ img, svg {
     border-radius: 100px;
     padding: 10px 22px;
     width: 45%;
-    margin-top: 5px;
+    margin-top: 80px;
 }
 .row1>* {
     flex-shrink: 0;
@@ -996,7 +1007,8 @@ img, svg {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Adjust width as necessary */
-    gap: 20px; /* Adjust the gap between cards */
+   
+    /* Adjust the gap between cards */
     padding: 20px; /* Optional: Add padding to the container */
   }
 .text-danger {
