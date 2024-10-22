@@ -19,9 +19,11 @@ function Dashboard() {
       id: "Homepage",
       label: "Dashboard",
       icon: "dash.svg",
+      className: "nav-img-Homepage",
       path: "with-driver",
-     
+      formName: "Homepage" 
     },
+    
     {
       id: "Vehicle:Add/Change/Remove",
       label: "Vehicle-Management",
@@ -188,12 +190,12 @@ function Dashboard() {
       return (
         <li
           key={item.id}
-          className="nav-item menu-item"
+          className="nav-item"
           onMouseEnter={() => setHoverTab(item.label)}
           onMouseLeave={() => setHoverTab(null)}
         >
           <div
-            className={`nav-link d-flex justify-items-space align-items-center  nav-link-dropdown ${
+            className={`nav-link d-flex justify-items-space align-items-center nav-link-dropdown ${
               activeBox === item.id ? "active" : ""
             }`}
             onClick={() => handleMenuItemClick(item.id)}
@@ -231,7 +233,7 @@ function Dashboard() {
         <NavLink
           className={({ isActive }) =>
             `nav-link d-flex justify-items-space align-items-center dropdown ${
-              isActive ? "active" : ""  // Will make the link active based on the current route
+              isActive || activeTab === item.id ? "active" : "" // Will make the link active based on the current route
             }`
           }
           id={`${item.id}-tab`}

@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, useEffect} from "react";
+import React, { useState, forwardRef, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
@@ -11,26 +11,26 @@ function WithDriver() {
   const [isChecked, setIsChecked] = useState(false);
   const [fromDate, setFromDate] = useState(null);
   const [toDate, setToDate] = useState(null);
-  const [vehicleName, setVehicleName] = useState("");
   const [branchId, setBranchId] = useState(""); // State for selected branch ID
   const [branches, setBranches] = useState([]); // State for branch list
-  const [vehicles, setVehicles] = useState([]);
+  const [vehicles, setVehicles] = useState([]); // Initialize as empty array
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);                                              
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        
-        // const branchResponse = await axios.get("https://cbtcarrentalapi.blueberry-travel.com/api/");
-        // setBranches(branchResponse.data || []);
-
-       
-        const vehicleResponse = await axios.get("https://cbtcarrentalapi.blueberry-travel.com/api/Vehicle");
+        const vehicleResponse = await axios.get("/api/Vehicle");
         console.log("Vehicle API Response:", vehicleResponse.data);
-        setVehicles(vehicleResponse.data || []);
+        
+        // Check if the response contains an 'items' array
+        if (vehicleResponse.data && Array.isArray(vehicleResponse.data.items)) {
+          setVehicles(vehicleResponse.data.items); // Set vehicles to the 'items' array
+        } else {
+          setVehicles([]); // In case 'items' is not an array, set an empty array
+        }
       } catch (err) {
         console.error("Error fetching data:", err);
         setError(err.message);
@@ -38,21 +38,20 @@ function WithDriver() {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
+  
 
   const handleBranchChange = (e) => {
     setBranchId(e.target.value);
     console.log("Selected Branch ID:", e.target.value);
   };
 
-
   const handleToggle = () => {
     const newState = !isChecked;
     setIsChecked(newState);
     if (newState) {
-      
       navigate("/dashboard/without-driver");
     }
   };
@@ -60,7 +59,6 @@ function WithDriver() {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  
   const CustomInput = forwardRef(({ value, onClick, placeholder }, ref) => (
     <div className="date-input-wrapper">
       <input
@@ -74,12 +72,25 @@ function WithDriver() {
       <Calendar className="date-icon" onClick={onClick} />
     </div>
   ));
+
   const handleBookDriver = () => {
     navigate("/dashboard/driveravailability-page");
   };
+
+  // Filter vehicles where branchId is 0 and the vehicle name includes the search term
+  console.log("vehicles", vehicles);
+  
+  const filteredVehicles = vehicles.filter(
+    (vehicle) =>
+      vehicle.branchId === 0 &&
+      vehicle.vehicleName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+ 
+  console.log("filteredVehicles",filteredVehicles);
+  
   return (
     <div className="tab-pane fade active show" id="price-plan" role="tabpanel">
-      <div className="tab-content" style={{marginLeft:"20px"}}>
+      <div className="tab-content" style={{ marginLeft: "20px" }}>
         <div className="tab-pane fade active show">
           <div className="projectContainer">
             <div className="projectForm bg-light">
@@ -116,11 +127,11 @@ function WithDriver() {
                         />
                       </div>
                       <div className="select-wrapper">
-                      <select
+                        <select
                           className="select-location"
                           id="branchId"
-                          value={branchId} // Bind selected branchId to the select
-                          onChange={handleBranchChange} // Update branchId on change
+                          value={branchId}
+                          onChange={handleBranchChange}
                           required
                         >
                           <option value="0" disabled>
@@ -128,8 +139,7 @@ function WithDriver() {
                           </option>
                           {branches.map((branch) => (
                             <option key={branch.branchId} value={branch.branchId}>
-                              {branch.name}{" "}
-                              {/* Show branch name in the options */}
+                              {branch.branchId}
                             </option>
                           ))}
                         </select>
@@ -196,6 +206,7 @@ function WithDriver() {
                   <button className="filter-btn">
                     <img
                       src={`${process.env.PUBLIC_URL}/assets/images/filter.png`}
+                      alt="Filter"
                     />
                   </button>
                 </div>
@@ -204,7 +215,7 @@ function WithDriver() {
                 <input
                   type="text"
                   className="search-input"
-                  placeholder="Search"
+                  placeholder="Search by vehicle name"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -214,86 +225,96 @@ function WithDriver() {
                   className="search_icon"
                 />
               </div>
-              <div className="row">
-                {vehicles.length > 0 ? (
-                  vehicles.map((vehicle) => (
-                    <div className="col-md-4" key={vehicle.id}>
-                      <Card className="car-dash">
-                        <div className="d-flex flex-row p-2 align-items-between">
-                          <div className="col-md-5 justify-content-start p-0">
-                            <Card.Img
-                              variant="left"
-                              src={vehicle.mainPhoto || "/assets/images/icons/car.png"}
-                              style={{width:"100%", marginBottom: "0"}}
-                            />
-                          </div>
-                          <div className="col-md-7 d-flex flex-column justify-content-start ms-1 p-0">
-                            <Card.Body className="pb-0">
-                              <Card.Title className="mb-3 d-flex align-items-center text-start">
-                                <strong>{vehicle.vehicleName || "Vehicle Name"}</strong>
-                              </Card.Title>
-                              <p className="mb-2 text-start">
-                                <strong>{vehicle.model || "Model Information"}</strong>
-                              </p>
-                              <div className="d-flex align-items-start mb-2">
-                                <span>Live Status:</span>
-                                <span className="rnd-scs d-flex align-items-center">
-                                  <img
-                                    src="/assets/images/icons/avlbl.svg"
-                                    alt="Available"
-                                    className="me-2"
-                                  />
-                                  <span className="text-success">
-                                    {vehicle.liveStatus || "Available"}
-                                  </span>
-                                </span>
-                              </div>
-                              <a
-                                href="#"
-                                className="d-flex align-items-center mt-3"
-                                style={{ textDecoration: "none" }}
-                              >
-                                <img
-                                  src="/assets/images/icons/download(.).png"
-                                  alt="Download"
-                                  className="me-3"
-                                />
-                                <span>Download Details</span>
-                              </a>
-                              <p className="text-lg font-bold mt-3 mb-0 text-start d-flex align-items-start">
-                                <img
-                                  src="/assets/images/icons/currency_rupee_circle.svg"
-                                  alt="Rupee"
-                                  className="me-2 pt-1"
-                                  style={{ width: "20px", height: "20px" }}
-                                />
-                                <span style={{ color: "#13204DCC" }}>
-                                  <strong>INR 300/hr</strong>
-                                </span>
-                              </p>
-                            </Card.Body>
-                          </div>
-                        </div>
-                        <button
-                          className="driver-btn mt-2"
-                          onClick={handleBookDriver}
-                          type="button"
-                        >
-                          Select Driver
-                        </button>
-                        <Card.Footer className="w-100 d-flex justify-content-between mt-3 p-1 text-muted">
-                          <small>Insurance Exp. {vehicle.insuranceNo || "N/A"}</small>
-                          <small>Registration Exp. {vehicle.registrationExpire || "N/A"}</small>
-                        </Card.Footer>
-                      </Card>
-                    </div>
-                  ))
-                ) : (
-                  <div className="col-12 text-center">
-                    <p>No vehicles available</p>
-                  </div>
-                )}
-              </div>
+              <div className="row g-2"> {/* Use g-3 or adjust the number for gap size */}
+  {filteredVehicles.length > 0 ? (
+    filteredVehicles.map((vehicle) => (
+      <div className="col-md-4" key={vehicle.vehicleId}>
+        <Card className="car-dash h-100"> {/* Ensure full height cards for equal layout */}
+          <div className="d-flex flex-row align-items-between">
+            <div className="col-md-5 justify-content-start p-0">
+              {/* <Card.Img
+                variant="left"
+                src={vehicle.mainPhoto || "/assets/images/icons/car.png"}
+                style={{ width: "100%", marginBottom: "0" }}
+              /> */}
+              <Card.Img
+                          variant="left"
+                          src="/assets/images/icons/car.png"
+                          style={{width:"100%"}}
+                        />
+            </div>
+            <div className="col-md-7 d-flex flex-column justify-content-start ms-1 p-0">
+              <Card.Body className="pb-0">
+                <Card.Title className="mb-3 d-flex align-items-center text-start">
+                  <img
+                    src="/assets/images/icons/bmw.png"
+                    className="me-2"
+                    alt="BMW logo"
+                  />
+                  <strong>{vehicle.vehicleName || "Vehicle Name"}</strong>
+                </Card.Title>
+                <p className="mb-2 text-start">
+                  <strong>{vehicle.model || "Model Information"}</strong>
+                </p>
+                <div className="d-flex align-items-start mb-2">
+                  <span>Live Status:</span>
+                  <span className="rnd-scs d-flex align-items-center">
+                    <img
+                      src="/assets/images/icons/avlbl.svg"
+                      alt="Available"
+                      className="me-2"
+                    />
+                    <span className="text-success">
+                      {vehicle.liveStatus || "Available"}
+                    </span>
+                  </span>
+                </div>
+                <a
+                  href="#"
+                  className="d-flex align-items-center mt-3"
+                  style={{ textDecoration: "none" }}
+                >
+                  <img
+                    src="/assets/images/icons/download(.).png"
+                    alt="Download Icon"
+                    className="me-2"
+                    style={{ width: "20px", height: "20px" }}
+                  />
+                  <span>Download Details</span>
+                </a>
+                <p className="text-lg font-bold mt-3 text-start d-flex align-items-start">
+                  <img
+                    src="/assets/images/icons/currency_rupee_circle.svg"
+                    alt="Rupee"
+                    className="me-2 pt-1"
+                    style={{ width: "20px", height: "20px" }}
+                  />
+                  <span style={{ color: "#13204DCC" }}>
+                    <strong>INR 300/hr</strong>
+                  </span>
+                </p>
+              </Card.Body>
+            </div>
+          </div>
+          <button
+            className="driver-btn mt-0"
+            onClick={handleBookDriver}
+            type="button"
+          >
+            Select Driver
+          </button>
+          <Card.Footer className="w-100 d-flex justify-content-between mt-3 p-1 text-muted">
+            <small>Insurance Exp. {vehicle.insuranceNo || "N/A"}</small>
+            <small>Registration Exp. {vehicle.registrationExpire || "N/A"}</small>
+          </Card.Footer>
+        </Card>
+      </div>
+    ))
+  ) : (
+    <div>No vehicles found.</div>
+  )}
+</div>
+
             </div>
           </div>
         </div>
