@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Dashboard from './Dashboard';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
+import { BorderAllRounded } from '@mui/icons-material';
 function DriverReport(){
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedProducts, setSelectedProducts] = useState(null);
@@ -23,17 +24,15 @@ function DriverReport(){
     return(
       <div
       className="tab-pane fade active show"
-      id="price-plan"
-      role="tabpanel"
-      
+     
     >
   
-      <div className="tab-content">
-      <div className="tab-pane fade active show">   
-        <div className="container pb-5 projectContainer">
-  <div className="projectForm bg-light">
+  <div className="tab-content" style={{marginLeft:"10px"}}>
+      <div className="tab-pane fade active show">    
+        <div className="projectContainer">
+  <div className="bg-light">
     <div className="projectTableHeading d-flex justify-content-between align-items-center">
-      <h5 className="title">Driver Report</h5>
+      <h5 className="title" style={{padding:"20px"}}>Driver Report</h5>
       {/* <div className="icons-div d-flex ms-auto">
         <div className="create-btn">
           <img
@@ -46,7 +45,7 @@ function DriverReport(){
       </div> */}
       
     </div>
-    <div className="search-container">
+    <div className="search-container1">
               <input
                 type="text"
                 className="search-input"

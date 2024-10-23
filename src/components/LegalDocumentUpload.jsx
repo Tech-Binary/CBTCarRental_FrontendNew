@@ -92,6 +92,7 @@ function LegalDocumentUpload() {
                           style={{
                             paddingRight: "80px",
                             backgroundColor: "#f2f5ff",
+                            width: "105%",
                           }} // Add padding to the right for the icon
                         />
                         {/* File input (hidden) */}
@@ -108,7 +109,7 @@ function LegalDocumentUpload() {
                           } // Trigger file input click
                           style={{
                             position: "absolute",
-                            right: "36px",
+                            right: "20px",
                             top: "48%",
                             transform: "translateY(-10%)",
                             cursor: "pointer",
@@ -117,13 +118,13 @@ function LegalDocumentUpload() {
                             borderRadius: "6px", // Optional: Make the background rounded
                           }}
                         >
-                          <MdOutlineFileUpload size={24} />
+                          <MdOutlineFileUpload size={24} color="white" />
                         </span>
                       </div>
                     </div>
 
                     {/* Sixth input for Expiration Date */}
-                    <div className="form-group col-md-2">
+                    <div className="form-group col-md-3">
                       <label htmlFor="FormSelect">Exp. Date</label>
                       <input
                         type="date"
@@ -133,7 +134,7 @@ function LegalDocumentUpload() {
                         value={formData.expDate}
                         onChange={handleChange}
                         placeholder="dd-mm-yyyy"
-                        style={{ backgroundColor: "#f2f5ff", color: "grey", marginLeft:"-35px" }}
+                        style={{ backgroundColor: "#f2f5ff", color: "grey", marginLeft:"-9px" }}
                       />
                     </div>
                   </div>

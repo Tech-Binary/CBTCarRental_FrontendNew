@@ -142,7 +142,7 @@
     line-height: 28.26px;
     text-align: center;
     position: relative;
-    left: 20px;
+    left: 30px;
 }
 
 .nav-link.active img {
@@ -159,7 +159,7 @@
     align-content: center;
     width: 340px;
     height: 50px;
-    position: relative;
+    position: sticky;
     right: 3px;
     margin-top: 4px;
 }
@@ -190,8 +190,9 @@
 
 .nav-link:hover {
   
-    background: #73BFDB !important;
+    background: linear-gradient(90.96deg, #034366 -10.89%, #1eb6dc 229.79%) !important;
     height: 50px;
+    border-radius: 8px;
     color: white !important;
     cursor: pointer;
 }
@@ -263,8 +264,8 @@
 
 .box {
     position: fixed;
-    top: 112px;
-    left: 80px;
+    top: 74px;
+    left: 78px;
     width: 274px !important;
     height: calc(96vh - 60px);
     background: #FFF0E3;

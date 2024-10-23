@@ -21,7 +21,17 @@ function Dashboard() {
       icon: "dash.svg",
       className: "nav-img-Homepage",
       path: "with-driver",
-      formName: "Homepage" 
+      formName: "Homepage" ,
+      isDropdown: true,
+      children: [
+        {
+          id: "With-Driver",
+          label: "With-Driver",
+          icon: "user.svg",
+          className: "mr-2 roleimg",
+          path: "with-driver",
+        },
+      ]
     },
     
     {
@@ -190,7 +200,8 @@ function Dashboard() {
       return (
         <li
           key={item.id}
-          className="nav-item"
+          className="nav-item menu-item"
+          data-target={`${item.id}`}
           onMouseEnter={() => setHoverTab(item.label)}
           onMouseLeave={() => setHoverTab(null)}
         >
@@ -265,6 +276,7 @@ function Dashboard() {
   const handleLinkClick = (tab) => {
     setActiveTab(tab);
     setActiveBox(null);
+    console.log("Active Tab:", tab); 
   };
 
   const renderSubMenu = () => {

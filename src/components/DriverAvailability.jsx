@@ -1,8 +1,9 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState, forwardRef, useEffect } from "react";
 import "primeicons/primeicons.css";
 import DatePicker from "react-datepicker";
 import { Calendar } from "lucide-react";
 import Card from "react-bootstrap/Card";
+import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap"; // Import Modal and Button components
@@ -12,8 +13,67 @@ function DriverAvailability() {
   const [isChecked, setIsChecked] = useState(false);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [showModal, setShowModal] = useState(false); // Add state to control modal visibility
+  const [showModal, setShowModal] = useState(false);
+  const [drivers, setDrivers] = useState([]);
+  const [vehicles, setVehicles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [selectedDriver, setSelectedDriver] = useState(null);
+  const [selectedVehicle, setSelectedVehicle] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        // Run both API calls concurrently
+        const [driverResponse, vehicleResponse] = await Promise.all([
+          axios.get("/api/Driver"),
+          axios.get("/api/Vehicle"),
+        ]);
+
+        console.log("Driver API Response:", driverResponse.data);
+        console.log("Vehicle API Response:", vehicleResponse.data);
+
+        // Check if the driver response contains an 'items' array
+        if (driverResponse.data && Array.isArray(driverResponse.data.items)) {
+          setDrivers(driverResponse.data.items); // Set drivers to the 'items' array
+        } else {
+          setDrivers([]); // In case 'items' is not an array, set an empty array
+        }
+
+        // Check if the vehicle response contains an 'items' array
+        if (vehicleResponse.data && Array.isArray(vehicleResponse.data.items)) {
+          setVehicles(vehicleResponse.data.items); // Set vehicles to the 'items' array
+        } else {
+          setVehicles([]); // In case 'items' is not an array, set an empty array
+        }
+      } catch (err) {
+        console.error("Error fetching data:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log("drivers", drivers);
+  const filteredDrivers = drivers.filter((driver) =>
+    driver.driverName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  console.log("filteredDrivers", filteredDrivers);
+
+  console.log("vehicles", vehicles);
+
+  const filteredVehicles = vehicles.filter(
+    (vehicle) =>
+      vehicle.branchId === 0 &&
+      vehicle.vehicleName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  console.log("filteredVehicles", filteredVehicles);
 
   const handleToggle = () => {
     const newState = !isChecked;
@@ -23,9 +83,11 @@ function DriverAvailability() {
       navigate("/dashboard/without-driver");
     }
   };
+
   const handleBookNow = () => {
     navigate("/dashboard/new-booking");
   };
+
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -43,16 +105,34 @@ function DriverAvailability() {
       <Calendar className="date-icon" onClick={onClick} />
     </div>
   ));
+  drivers.map((driver) => (
+    <Card
+      key={driver.driverId}
+      onClick={() => handleShowModal(driver, null)}
+    ></Card>
+  ));
 
-  // Function to handle modal open and close
-  const handleShowModal = () => setShowModal(true);
+  {
+    vehicles.map((vehicle) => (
+      <Card
+        key={vehicle.vehicleId}
+        onClick={() => handleShowModal(null, vehicle)}
+      ></Card>
+    ));
+  }
+
+  const handleShowModal = (driver, vehicle) => {
+    setSelectedDriver(driver); // Set the selected driver
+    setSelectedVehicle(vehicle); // Set the selected vehicle
+    setShowModal(true); // Open the modal
+  };
   const handleCloseModal = () => setShowModal(false);
 
   return (
     <div className="tab-pane fade active show" id="price-plan" role="tabpanel">
-      <div className="tab-content" style={{marginLeft:"20px"}}>
+      <div className="tab-content" style={{ marginLeft: "20px" }}>
         <div className="tab-pane fade active show">
-          <div className=" projectContainer">
+          <div className="projectContainer">
             <div className="projectForm bg-light">
               <div className="projectTableHeading d-flex justify-content-between align-items-center">
                 <div className="fixed-filter pt-0">
@@ -86,13 +166,7 @@ function DriverAvailability() {
                           customInput={<CustomInput placeholder="To" />}
                         />
                       </div>
-                      <div className="select-wrapper">
-                        <select className="select-location">
-                          <option value="">Select Location</option>
-                          <option value="location1">Location 1</option>
-                          <option value="location2">Location 2</option>
-                        </select>
-                      </div>
+
                       <button className="availability-btn me-1">
                         Show Availability
                       </button>
@@ -156,10 +230,12 @@ function DriverAvailability() {
                   <button className="filter-btn">
                     <img
                       src={`${process.env.PUBLIC_URL}/assets/images/filter.png`}
+                      alt="Filter"
                     />
                   </button>
                 </div>
               </div>
+
               <div className="search-container">
                 <input
                   type="text"
@@ -174,214 +250,245 @@ function DriverAvailability() {
                   className="search_icon"
                 />
               </div>
-              <div className="row">
-                <div className="col-md-4 ">
-                  <Card className="car-driver" style={{ border: "1.15px solid #8DD3FF4D",}}>
-                    <div className="d-flex flex-row  align-items-between">
-                      {/* Image Section */}
-                      <div
-                        className="col-md-4 driverimg"
-                        style={{
-                          background:
-                            "linear-gradient(180.08deg, #BAE5F8 -30.35%, rgba(186, 229, 248, 0) 118.53%)",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          
-                        }}
-                      >
-                        {/* Assuming you will insert an image here */}
-                        <Card.Img
-                          variant="left"
-                          src="/assets/images/avlbldriver.png"
-                          style={{width:"85%"}}
-                          alt="Driver Image"
-                        />
-                      </div>
 
-                      {/* Text Content Section */}
-                      <div className="col-md-8 d-flex flex-column justify-content-start " style={{background: "#FBFEFF",}}>
-                        <Card.Body>
-                          <p className="mb-2 text-start">
-                            Driver's Name: <strong>Daniel Hayes</strong>
-                          </p>
-                          <p className="mb-2 text-start">
-                            Total Trips Covered: <strong>75 Trips</strong>
-                          </p>
-                          <p className="mb-2 text-start">
-                            Total Experience: <strong>14 years</strong>
-                          </p>
-                          <div className="d-flex align-items-start mb-2">
-                            <span>Live Status:</span>
-                            <span className="rnd-nscs d-flex align-items-center">
-                              <img
-                                src="/assets/images/notavailable.png"
-                                alt="Available"
-                                className="me-1"
-                              />
-                              <span className="text-danger">Not Available</span>
-                            </span>
-                          </div>
-                          <a
-                            href="#"
-                            className="d-flex align-items-center mt-3"
-                            style={{ textDecoration: "none" }}
+              <div className="row g-2">
+                {filteredDrivers.length > 0 ? (
+                  filteredDrivers.map((driver) => (
+                    <div className="col-md-4 ">
+                      <Card
+                        className="car-driver"
+                        style={{ border: "1.15px solid #8DD3FF4D" }}
+                      >
+                        <div className="d-flex flex-row  align-items-between">
+                          {/* Image Section */}
+                          <div
+                            className="col-md-4 driverimg"
+                            style={{
+                              background:
+                                "linear-gradient(180.08deg, #BAE5F8 -30.35%, rgba(186, 229, 248, 0) 118.53%)",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
                           >
-                            <img
-                              src="/assets/images/icons/download(.).png"
-                              alt="Download"
-                              className="me-3"
+                            {/* Assuming you will insert an image here */}
+                            <Card.Img
+                              variant="left"
+                              src="/assets/images/avlbldriver.png"
+                              style={{ width: "85%" }}
+                              alt="Driver Image"
                             />
-                            <span>Download Details</span>
-                          </a>
-                        </Card.Body>
-                      </div>
-                    </div>
+                          </div>
 
-                    <Card.Footer className="d-flex justify-content-center" style={{background:"#FBFEFF"}}>
-                      <button
-                        className="driver-btn mt-0"
-                        type="button"
-                        onClick={handleShowModal} // Show the modal when button is clicked
-                      >
-                        Select Driver
-                      </button>
-                    </Card.Footer>
-                  </Card>
-                </div>
+                          {/* Text Content Section */}
+                          <div
+                            className="col-md-8 d-flex flex-column justify-content-start "
+                            style={{ background: "#FBFEFF" }}
+                          >
+                            <Card.Body>
+                              <p className="mb-2 text-start">
+                                Driver's Name:{" "}
+                                <strong>{driver.driverName}</strong>
+                              </p>
+                              <p className="mb-2 text-start">
+                                Total Trips Covered:{" "}
+                                <strong>{driver.tripsCovered}</strong>
+                              </p>
+                              <p className="mb-2 text-start">
+                                Total Experience:{" "}
+                                <strong>{driver.experience}</strong>
+                              </p>
+                              <div className="d-flex align-items-start mb-2">
+                                <span>Live Status:</span>
+                                <span className="rnd-nscs d-flex align-items-center">
+                                  <img
+                                    src="/assets/images/notavailable.png"
+                                    alt="Available"
+                                    className="me-1"
+                                  />
+                                  <span className="text-danger">
+                                    {driver.liveStatus || "Available"}
+                                  </span>
+                                </span>
+                              </div>
+                              <a
+                                href="#"
+                                className="d-flex align-items-center mt-3"
+                                style={{ textDecoration: "none" }}
+                              >
+                                <img
+                                  src="/assets/images/icons/download(.).png"
+                                  alt="Download"
+                                  className="me-3"
+                                />
+                                <span>Download Details</span>
+                              </a>
+                            </Card.Body>
+                          </div>
+                        </div>
+
+                        {/* Footer for Contact and Book Now button */}
+                        <Card.Footer
+                          className="d-flex justify-content-center"
+                          style={{ background: "#FBFEFF" }}
+                        >
+                          <button
+                            className="driver-btn mt-0"
+                            type="button"
+                            onClick={() => handleShowModal(driver, vehicles)} // Show the modal when button is clicked
+                          >
+                            Select Driver
+                          </button>
+                        </Card.Footer>
+                      </Card>
+                    </div>
+                  ))
+                ) : (
+                  <p>No drivers available</p>
+                )}
               </div>
-
-              {/* Modal */}
-              <Modal show={showModal} onHide={handleCloseModal} centered>
-                <Modal.Header closeButton>
-                  <Modal.Title>Select Driver</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <div className="container">
-                    {/* First row for the car */}
-                    <div className="row mb-3">
-                      {/* Car Image Section */}
-                      <div className="col-4">
-                        <div
-                          className="image-container"
-                          style={{
-                            width: "130px", // Set the width and height to make it square
-                            height: "110px",
-                            background:
-                              "linear-gradient(180.13deg, #BDE9FB -50.39%, #FEFFFF 105.85%)",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            borderRadius: "10px", // Optional: add rounded corners
-                            border: "1.15px solid #8DD3FF4D", // Add border with the desired color and width
-                          }}
-                        >
-                          <img
-                            src="/assets/images/popupcar.png" // Add the correct car image path
-                            alt="Car"
-                            className="img-fluid"
-                            style={{ maxWidth: "90%", maxHeight: "90%" }} // Ensure the image fits within the square
-                          />
-                        </div>
-                      </div>
-
-                      {/* Car Details and Price Section */}
-                      <div className="col-8 d-flex flex-column justify-content-between">
-                        {/* Car Name and Price (side by side) */}
-                        <div className="d-flex justify-content-between align-items-center">
-                          <p style={{ marginBottom: "0" }}>                        <img
-                              src="/assets/images/icons/bmw.png"
-                              className="me-2"
-                              alt="BMW logo"
-                            />
-                            <strong>BMW X5</strong>
-                            </p>
-
-                          <p className="text-lg font-bold d-flex align-items-center ">
-                            <img
-                              src="/assets/images/icons/currency_rupee_circle.svg"
-                              alt="Rupee"
-                              className="me-2"
-                              style={{ width: "20px", height: "20px" }} // Adjust the size as needed
-                            />
-                            <span style={{ color: "#13204DCC" }}>
-                              <strong>INR 300/hr</strong>
-                            </span>
-                          </p>
-                        </div>
-                        <div>
-                          <p style={{ marginBottom: "0" }}><strong>xDrive 30d Sport</strong></p>
-                          <p className="text-muted" style={{ marginBottom: "0" }}>
-                            Insurance Exp.01-01-2024
-                          </p>
-                          <p className="text-muted">
-                            Registration Exp.01-01-2024
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <hr style={{  width: "100%", borderTop: "1px solid black" }} />
-
-                    {/* Second row for the driver */}
-                    <div className="row">
-                      <div className="col-4">
-                        <div
-                          className="image-container"
-                          style={{
-                            width: "130px", // Set the width and height to make it square
-                            height: "110px",
-                            background:
-                              "linear-gradient(180.13deg, #BDE9FB -50.39%, #FEFFFF 105.85%)",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            borderRadius: "10px", // Optional: add rounded corners
-                            border: "1.15px solid #8DD3FF4D",
-                          }}
-                        >
-                          <img
-                            src="/assets/images/avlbldriver.png" // Add the correct car image path
-                            alt="Car"
-                            className="img-fluid"
-                            style={{ maxWidth: "90%", maxHeight: "90%" }} // Ensure the image fits within the square
-                          />
-                        </div>
-                      </div>
-                      <div className="col-8">
-                        <h5 style={{ marginBottom: "1" }}>Driver Details</h5>
-                        <p style={{ marginBottom: "0" }}>
-                          Name: <strong>Daniel Hayes</strong>
-                        </p>
-                        <p>
-                          Experience: <strong>14 years</strong>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Modal.Body>
-
-                <Modal.Footer className="d-flex justify-content-between">
-                  <button
-                    className="cancel-btn mt-0"
-                    type="button"
-                    onClick={handleCloseModal}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="booknow-btn mt-0"
-                    type="button"
-                    onClick={handleBookNow}
-                  >
-                    Book Now
-                  </button>
-                </Modal.Footer>
-              </Modal>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Modal for Booking */}
+      <Modal show={showModal} onHide={handleCloseModal} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Driver and Vehicle Information</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container">
+            {/* First row for the vehicle */}
+            {selectedVehicle ? (
+              <div className="row mb-3">
+                {/* Vehicle Image Section */}
+                <div className="col-4">
+                  <div
+                    className="image-container"
+                    style={{
+                      width: "130px",
+                      height: "110px",
+                      background:
+                        "linear-gradient(180.13deg, #BDE9FB -50.39%, #FEFFFF 105.85%)",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "10px",
+                      border: "1.15px solid #8DD3FF4D",
+                    }}
+                  >
+                    <img
+                      src="/assets/images/popupcar.png" // Update with the correct car image path
+                      alt="Car"
+                      className="img-fluid"
+                      style={{ maxWidth: "90%", maxHeight: "90%" }}
+                    />
+                  </div>
+                </div>
+
+                {/* Vehicle Details Section */}
+                <div className="col-8 d-flex flex-column justify-content-between">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <p style={{ marginBottom: "0" }}>
+                      <img
+                        src="/assets/images/icons/bmw.png"
+                        className="me-2"
+                        alt="BMW logo"
+                      />
+                      <strong>{selectedVehicle.vehicleName}</strong>
+                    </p>
+                    <p className="text-lg font-bold d-flex align-items-center ">
+                      <img
+                        src="/assets/images/icons/currency_rupee_circle.svg"
+                        alt="Rupee"
+                        className="me-2"
+                        style={{ width: "20px", height: "20px" }}
+                      />
+                      <span style={{ color: "#13204DCC" }}>
+                        <strong>INR 300/hr</strong>
+                      </span>
+                    </p>
+                  </div>
+                  <div>
+                    <p style={{ marginBottom: "0" }}>
+                      <strong>{selectedVehicle.model}</strong>
+                    </p>
+                    <p className="text-muted" style={{ marginBottom: "0" }}>
+                      Insurance Exp.{selectedVehicle.insuranceNo || "N/A"}
+                    </p>
+                    <p className="text-muted">
+                      Registration Exp.
+                      {selectedVehicle.registrationExpire || "N/A"}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <p>No vehicle selected</p>
+            )}
+
+            <hr style={{ width: "100%", borderTop: "1px solid black" }} />
+
+            {/* Second row for the driver */}
+            {selectedDriver ? (
+              <div className="row">
+                <div className="col-4">
+                  <div
+                    className="image-container"
+                    style={{
+                      width: "130px",
+                      height: "110px",
+                      background:
+                        "linear-gradient(180.13deg, #BDE9FB -50.39%, #FEFFFF 105.85%)",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderRadius: "10px",
+                      border: "1.15px solid #8DD3FF4D",
+                    }}
+                  >
+                    <img
+                      src="/assets/images/avlbldriver.png" // Update with the correct driver image path
+                      alt="Driver"
+                      className="img-fluid"
+                      style={{ maxWidth: "90%", maxHeight: "90%" }}
+                    />
+                  </div>
+                </div>
+                <div className="col-8">
+                  <h5 style={{ marginBottom: "1" }}>Driver Details</h5>
+                  <p style={{ marginBottom: "0" }}>
+                    Name: <strong>{selectedDriver.driverName}</strong>
+                  </p>
+                  <p>
+                    Experience: <strong>{selectedDriver.experience}</strong>
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <p>No driver selected</p>
+            )}
+          </div>
+        </Modal.Body>
+
+        <Modal.Footer className="d-flex justify-content-between">
+          <button
+            className="cancel-btn mt-0"
+            type="button"
+            onClick={handleCloseModal}
+          >
+            Cancel
+          </button>
+          <button
+            className="booknow-btn mt-0"
+            type="button"
+            onClick={handleBookNow}
+          >
+            Book Now
+          </button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

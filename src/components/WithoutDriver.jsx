@@ -24,7 +24,7 @@ function WithoutDriver() {
       try {
         const vehicleResponse = await axios.get("/api/Vehicle");
         console.log("Vehicle API Response:", vehicleResponse.data);
-        
+
         // Check if the response contains an 'items' array
         if (vehicleResponse.data && Array.isArray(vehicleResponse.data.items)) {
           setVehicles(vehicleResponse.data.items); // Set vehicles to the 'items' array
@@ -38,16 +38,14 @@ function WithoutDriver() {
         setLoading(false);
       }
     };
-  
+
     fetchData();
   }, []);
-  
 
   const handleBranchChange = (e) => {
     setBranchId(e.target.value);
     console.log("Selected Branch ID:", e.target.value);
   };
-
 
   const handleToggle = () => {
     // Directly navigate to the "With Driver" page on toggle
@@ -75,14 +73,14 @@ function WithoutDriver() {
     navigate("/dashboard/new-booking");
   };
   console.log("vehicles", vehicles);
-  
+
   const filteredVehicles = vehicles.filter(
     (vehicle) =>
       vehicle.branchId === 0 &&
       vehicle.vehicleName.toLowerCase().includes(searchTerm.toLowerCase())
   );
- 
-  console.log("filteredVehicles",filteredVehicles);
+
+  console.log("filteredVehicles", filteredVehicles);
 
   return (
     <div className="tab-pane fade active show" id="price-plan" role="tabpanel">
@@ -123,7 +121,7 @@ function WithoutDriver() {
                         />
                       </div>
                       <div className="select-wrapper">
-                      <select
+                        <select
                           className="select-location"
                           id="branchId"
                           value={branchId}
@@ -134,7 +132,10 @@ function WithoutDriver() {
                             Select Location
                           </option>
                           {branches.map((branch) => (
-                            <option key={branch.branchId} value={branch.branchId}>
+                            <option
+                              key={branch.branchId}
+                              value={branch.branchId}
+                            >
                               {branch.branchId}
                             </option>
                           ))}
@@ -308,8 +309,14 @@ function WithoutDriver() {
                           Book Now
                         </button>
                         <Card.Footer className="w-100 d-flex justify-content-between mt-3 p-1 text-muted">
-                          <small>Insurance Exp. {vehicle.insuranceExpiryDate || "N/A"}</small>
-                          <small>Registration Exp. {vehicle.registrationExpiryDate || "N/A"}</small>
+                          <small>
+                            Insurance Exp.{" "}
+                            {vehicle.insuranceExpiryDate || "N/A"}
+                          </small>
+                          <small>
+                            Registration Exp.{" "}
+                            {vehicle.registrationExpiryDate || "N/A"}
+                          </small>
                         </Card.Footer>
                       </Card>
                     </div>

@@ -34,7 +34,7 @@ function RenewableDocument() {
       <div className="tab-content" style={{ marginLeft: "20px" }}>
         <div className="tab-pane fade active show">
           <div className="projectContainer">
-            <div className=" bg-light">
+            <div className="projectTable bg-light pt-0">
               <div className="projectTableHeading d-flex justify-content-between align-items-center">
                 <div className="row1 mb-4">
                   <div className="col-md-6 d-flex align-items-center">

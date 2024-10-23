@@ -130,14 +130,14 @@ body{
 }
 
 .create-btn {
-    width: 178px;
+    width: 170px;
     height: 45px;
     color: rgba(0, 193, 71, 1);
     position: relative;
     background-color:  #EDFFEA;
-    border: 1px solid;
+    border: 1px solid rgba(0, 193, 71, 1);
     border-radius: 100px;
-    border-color: rgba(0, 193, 71, 1);
+    
     display: flex;
     margin-left: 72%;
     align-items: center;
@@ -157,7 +157,7 @@ body{
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: smaller;
+    font-size: xx-small;
 }
 .history-btn {
     background-color: transparent;

@@ -35,7 +35,7 @@ function DriverInformation({ isSidebarOpen }) {
 
   return (
     <div className="tab-pane fade active show" id="price-plan" role="tabpanel">
-      <div className="tab-content" style={{marginLeft:"30pxpx"}}>
+      <div className="tab-content" style={{marginLeft:"25px"}}>
         <div className="tab-pane fade active show">
           <div className=" projectContainer">
             <div className="projectForm bg-light">

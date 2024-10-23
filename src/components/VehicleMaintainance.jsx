@@ -39,7 +39,7 @@ function VehicleMaintainance() {
                 <h5 className="title">Vehicle Maintainance</h5>
               </div>
               <div>
-                <form className="me-3">
+                <form>
                   <div className="row mb-3">
                     <div className="col-md-3">
                       <input
