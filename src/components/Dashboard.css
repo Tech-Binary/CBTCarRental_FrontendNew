@@ -137,13 +137,12 @@ body{
     background-color:  #EDFFEA;
     border: 1px solid rgba(0, 193, 71, 1);
     border-radius: 100px;
-    
     display: flex;
     margin-left: 72%;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: small !important;
+    font-size: 400 !important;
 }
 
 .upload-btn{
@@ -157,7 +156,7 @@ body{
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: small;
+    font-size: 400;
 }
 .history-btn {
     background-color: transparent;

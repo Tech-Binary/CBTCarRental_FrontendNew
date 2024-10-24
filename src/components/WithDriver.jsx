@@ -22,14 +22,19 @@ function WithDriver() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const vehicleResponse = await axios.get("/api/Vehicle");
-        console.log("Vehicle API Response:", vehicleResponse.data);
-
-        // Check if the response contains an 'items' array
-        if (vehicleResponse.data && Array.isArray(vehicleResponse.data.items)) {
-          setVehicles(vehicleResponse.data.items); // Set vehicles to the 'items' array
+        const response = await axios.get(
+          '/api/Vehicle?branchId=0&currentPageNumber=1&pageSize=50&orderByColNum=1',
+          {
+            headers: {
+              'Content-Type': 'application/json', // Add the correct Content-Type header
+            },
+          }
+        );
+        console.log("Vehicle API Response:", response.data);
+        if (response.data && Array.isArray(response.data.items)) {
+          setVehicles(response.data.items);
         } else {
-          setVehicles([]); // In case 'items' is not an array, set an empty array
+          setVehicles([]);
         }
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -38,10 +43,9 @@ function WithDriver() {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
-
   const handleBranchChange = (e) => {
     setBranchId(e.target.value);
     console.log("Selected Branch ID:", e.target.value);
@@ -86,6 +90,7 @@ function WithDriver() {
   );
 
   console.log("filteredVehicles", filteredVehicles);
+
 
   return (
     <div className="tab-pane fade active show" id="price-plan" role="tabpanel">
@@ -133,7 +138,7 @@ function WithDriver() {
                           onChange={handleBranchChange}
                           required
                         >
-                          <option value="0" disabled>
+                          <option value="" disabled>
                             Select Location
                           </option>
                           {branches.map((branch) => (

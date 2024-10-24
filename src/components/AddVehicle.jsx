@@ -23,19 +23,7 @@ function AddVehicle() {
   const [features, setFeatures] = useState("");
   const [fuels, setFuels] = useState([]);
 
-  useEffect(() => {
-    axios
-      .get("https://cbtcarrentalapi.blueberry-travel.com/api/Vehicle")
-      .then((response) => {
-        const vehicleData = response.data;
-        setFuels(vehicleData.fuels || []);
-        setVehicleTypes(vehicleData.vehicleTypes || []);
-      })
-      .catch((error) => {
-        console.error("Error fetching vehicle data:", error);
-      });
-  }, []);
-
+ 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
     console.log(file);
