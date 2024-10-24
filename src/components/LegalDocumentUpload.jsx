@@ -71,55 +71,17 @@ function LegalDocumentUpload() {
                       />
                     </div>
                     {/* Fifth input with file upload */}
-                    <div
-                      class="col-md-3"
-                      style={{
-                        position: "relative",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
+                    <div className="col-md-3">
                       <div className="form-group">
-                        <label htmlFor="name">Registrations Papers</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="input1"
-                          name="input1"
-                          value={formData.input5}
-                          onChange={handleChange}
-                          placeholder="No Choosen file"
-                          style={{
-                            paddingRight: "80px",
-                            backgroundColor: "#f2f5ff",
-                            width: "105%",
-                          }} // Add padding to the right for the icon
-                        />
-                        {/* File input (hidden) */}
+                        <label htmlFor="image">Upload Image</label>
                         <input
                           type="file"
-                          id="fileUpload"
-                          style={{ display: "none" }}
+                          className="form-control"
+                          id="image"
                           onChange={handleFileUpload}
+                          style={{ backgroundColor: "#f2f5ff" }}
                         />
-                        {/* Icon inside the input field */}
-                        <span
-                          onClick={() =>
-                            document.getElementById("fileUpload").click()
-                          } // Trigger file input click
-                          style={{
-                            position: "absolute",
-                            right: "20px",
-                            top: "48%",
-                            transform: "translateY(-10%)",
-                            cursor: "pointer",
-                            backgroundColor: "#5896b8", // Background color behind the icon
-                            padding: "6px", // Add some padding for the icon background
-                            borderRadius: "6px", // Optional: Make the background rounded
-                          }}
-                        >
-                          <MdOutlineFileUpload size={24} color="white" />
-                        </span>
+                       
                       </div>
                     </div>
 
@@ -134,13 +96,13 @@ function LegalDocumentUpload() {
                         value={formData.expDate}
                         onChange={handleChange}
                         placeholder="dd-mm-yyyy"
-                        style={{ backgroundColor: "#f2f5ff", color: "grey", marginLeft:"-9px" }}
+                        style={{ backgroundColor: "#f2f5ff", color: "grey", marginLeft:"-1px" }}
                       />
                     </div>
                   </div>
 
                   <br />
-                  <div class="col-md-3 ms-2 d-flex align-items-end">
+                  <div class="col-md-3 flex align-items-end">
                     <button class="assign-loc-btn">Save</button>
                   </div>
                   <br />

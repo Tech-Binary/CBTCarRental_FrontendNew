@@ -180,7 +180,7 @@ function VehicleMaintainance() {
                   </div>
                   <br />
                   <div class="col-md-3 d-flex align-items-end">
-                    <button class="assign-loc-btn ms-3">Save</button>
+                    <button class="assign-loc-btn">Save</button>
                   </div>
                   <br />
                 </form>

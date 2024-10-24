@@ -29,7 +29,7 @@ function DriverReport(){
   
   <div className="tab-content" style={{marginLeft:"10px"}}>
       <div className="tab-pane fade active show">    
-        <div className="projectContainer">
+      <div className="projectContainer">
   <div className="bg-light">
     <div className="projectTableHeading d-flex justify-content-between align-items-center">
       <h5 className="title" style={{padding:"20px"}}>Driver Report</h5>

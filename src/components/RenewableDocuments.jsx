@@ -65,15 +65,11 @@ function RenewableDocument() {
                     </label>
                   </div>
                 </div>
-                <div className="icons-div d-flex">
-                  <div className="create-btn">
-                    <img
-                      src={`${process.env.PUBLIC_URL}/assets/Images/add.png`}
-                      alt="add"
-                      className="add-png"
-                    ></img>
-                    <p>Create booking</p>
-                  </div>
+                <div >
+                  <button className="create-btn">
+                   
+                    + Create booking
+                  </button>
                 </div>
               </div>
               <div className="row ">

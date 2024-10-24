@@ -299,74 +299,25 @@ function AddVehicle() {
                           value={lastServiceDate}
                           onChange={handleDateChange(setLastServiceDate)}
                           required
-                          style={{ backgroundColor: "#f2f5ff" }}
+                          style={{ backgroundColor: "#f2f5ff", color: "grey" }}
+
                         />
                       </div>
                     </div>
 
-                    {/* <div className="col-md-6">
-                      <div className="form-group">
-                        <label htmlFor="features">Features</label>
-                        <textarea
-                          className="form-control"
-                          id="features"
-                          value={features}
-                          onChange={handleNameChange(setFeatures)}
-                          placeholder="Enter vehicle features"
-                          required
-                          style={{ backgroundColor: "#f2f5ff" }}
-                        ></textarea>
-                      </div>
-                    </div> */}
+                   
 
-                    <div
-                      class="col-md-3"
-                      style={{
-                        position: "relative",
-                        display: "flex",
-                        alignItems: "center",
-                      }}
-                    >
+                    <div className="col-md-3">
                       <div className="form-group">
-                        <label htmlFor="name">Image</label>
-                        <input
-                          type="text"
-                          className="form-control"
-                          id="input1"
-                          name="input1"
-                          value={image}
-                          onChange={handleNameChange}
-                          placeholder="Select image"
-                          style={{
-                            paddingRight: "80px",
-                            backgroundColor: "#f2f5ff",
-                          }} // Add padding to the right for the icon
-                        />
-                        {/* File input (hidden) */}
+                        <label htmlFor="image">Upload Image</label>
                         <input
                           type="file"
-                          id="fileUpload"
-                          style={{ display: "none" }}
+                          className="form-control"
+                          id="image"
                           onChange={handleFileUpload}
+                          style={{ backgroundColor: "#f2f5ff" }}
                         />
-                        {/* Icon inside the input field */}
-                        <span
-                          onClick={() =>
-                            document.getElementById("fileUpload").click()
-                          } // Trigger file input click
-                          style={{
-                            position: "absolute",
-                            right: "33px",
-                            top: "49%",
-                            transform: "translateY(-10%)",
-                            cursor: "pointer",
-                            backgroundColor: "#5896b8", // Background color behind the icon
-                            padding: "6px", // Add some padding for the icon background
-                            borderRadius: "6px", // Optional: Make the background rounded
-                          }}
-                        >
-                          <MdOutlineFileUpload size={24} color="white" />
-                        </span>
+                        
                       </div>
                     </div>
 
