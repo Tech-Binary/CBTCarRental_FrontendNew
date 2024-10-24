@@ -1,6 +1,6 @@
 import axios from 'axios';
 const api = axios.create({
-    baseURL: 'https://cbtadmin.blueberry-travel.com/api',
+    baseURL: 'https://cbtcarrentalapi.blueberry-travel.com',
 });
 
 export default api;

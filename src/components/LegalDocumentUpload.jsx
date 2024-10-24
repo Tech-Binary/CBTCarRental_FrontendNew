@@ -47,9 +47,9 @@ function LegalDocumentUpload() {
                       <input
                         type="text"
                         className="form-control"
-                        id="input1"
-                        name="input1"
-                        value={formData.input1}
+                        id="vehicleId"
+                        name="vehicleId"
+                        value={formData.vehicleId}
                         onChange={handleChange}
                         placeholder="Vehicle Id"
                         style={{ backgroundColor: "#f2f5ff" }}
@@ -62,9 +62,9 @@ function LegalDocumentUpload() {
                       <input
                         type="text"
                         className="form-control"
-                        id="input1"
-                        name="input1"
-                        value={formData.input1}
+                        id="registratingPapers"
+                        name="registratingPapers"
+                        value={formData.registratingPapers}
                         onChange={handleChange}
                         placeholder="Vehicle Id"
                         style={{ backgroundColor: "#f2f5ff" }}
@@ -91,9 +91,9 @@ function LegalDocumentUpload() {
                       <input
                         type="date"
                         className="form-control"
-                        id="expDate"
-                        name="expDate"
-                        value={formData.expDate}
+                        id="registratingPapersExp"
+                        name="registratingPapersExp"
+                        value={formData.registratingPapersExp}
                         onChange={handleChange}
                         placeholder="dd-mm-yyyy"
                         style={{ backgroundColor: "#f2f5ff", color: "grey", marginLeft:"-1px" }}

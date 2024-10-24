@@ -2,7 +2,7 @@
   "name": "car-rental",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://cbtcarrentalapi.blueberry-travel.com",
+ 
 
   "dependencies": {
     "@emotion/react": "^11.13.3",
