@@ -1,32 +1,72 @@
 import React, { useState } from "react";
-import Dashboard from "./Dashboard";
-import { MdOutlineFileUpload } from "react-icons/md";
+import axios from "axios";
 
 function LegalDocumentUpload() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
   const [formData, setFormData] = useState({
-    input1: "",
-    input2: "",
-    input3: "",
-    input4: "",
-    input5: "",
-    input6: "",
-    input7: "",
-    input8: "",
+    vehicleId: "",
+    registratingPapers: "",
+    registratingPapersExp: "",
+    image: null, // To hold the uploaded file
   });
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target; // Destructure name and value from the target
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   const handleFileUpload = (e) => {
     const file = e.target.files[0];
-    console.log(file); // Do something with the file
+    setFormData((prevData) => ({
+      ...prevData,
+      image: file, // Set the file in state
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    // Create a new FormData object
+    const data = new FormData();
+
+    // Append all form fields to FormData
+    data.append("vehicleId", formData.vehicleId);
+    data.append("registratingPapers", formData.registratingPapers);
+    data.append("registratingPapersExp", formData.registratingPapersExp);
+    
+    // Append the image if it exists
+    if (formData.image) {
+      data.append("image", formData.image);
+    }
+
+    try {
+      // Send the form data using axios POST request
+      const response = await axios.post("/api/VehicleDocument", formData, {
+        params: {
+          vehicleId: 0,
+          currentPageNumber: 1,
+          pageSize: 50,
+        },
+        headers: {
+          'Content-Type': 'multipart/form-data', // Use multipart/form-data for file uploads
+        },
+      });
+      // Log the success response
+      console.log("Legal document data successfully submitted:", response.data);
+  
+      // Optionally, clear the form or reset state after successful submission
+      setFormData({
+        vehicleId: "",
+        registratingPapers: "",
+        registratingPapersExp: "",
+        image: null,
+      });
+    } catch (error) {
+      // Log and handle any errors from the submission
+      console.error("Error submitting legal document data:", error);
+    }
   };
 
   return (
@@ -36,11 +76,11 @@ function LegalDocumentUpload() {
           <div className="projectContainer">
             <div className="projectForm bg-light">
               <div className="d-flex justify-content-between align-items-center">
-  <h5 className="title">Legal Document-Upload</h5>
-  <button className="upload-btn">+ Add Document</button>
-</div>
+                <h5 className="title">Legal Document Upload</h5>
+                <button className="upload-btn">+ Add Document</button>
+              </div>
               <div>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <br />
                   <div className="row mb-3">
                     <div className="col-md-3">
@@ -58,7 +98,7 @@ function LegalDocumentUpload() {
                   </div>
                   <div className="row mb-3 ">
                     <div className="form-group col-md-3 ">
-                      <label htmlFor="name">Registrations Papers</label>
+                      <label htmlFor="registratingPapers">Registrations Papers</label>
                       <input
                         type="text"
                         className="form-control"
@@ -66,7 +106,7 @@ function LegalDocumentUpload() {
                         name="registratingPapers"
                         value={formData.registratingPapers}
                         onChange={handleChange}
-                        placeholder="Vehicle Id"
+                        placeholder="Registrating Papers"
                         style={{ backgroundColor: "#f2f5ff" }}
                       />
                     </div>
@@ -81,13 +121,12 @@ function LegalDocumentUpload() {
                           onChange={handleFileUpload}
                           style={{ backgroundColor: "#f2f5ff" }}
                         />
-                       
                       </div>
                     </div>
 
                     {/* Sixth input for Expiration Date */}
                     <div className="form-group col-md-3">
-                      <label htmlFor="FormSelect">Exp. Date</label>
+                      <label htmlFor="registratingPapersExp">Exp. Date</label>
                       <input
                         type="date"
                         className="form-control"
@@ -95,15 +134,14 @@ function LegalDocumentUpload() {
                         name="registratingPapersExp"
                         value={formData.registratingPapersExp}
                         onChange={handleChange}
-                        placeholder="dd-mm-yyyy"
-                        style={{ backgroundColor: "#f2f5ff", color: "grey", marginLeft:"-1px" }}
+                        style={{ backgroundColor: "#f2f5ff", color: "grey", marginLeft: "-1px" }}
                       />
                     </div>
                   </div>
 
                   <br />
-                  <div class="col-md-3 flex align-items-end">
-                    <button class="assign-loc-btn">Save</button>
+                  <div className="col-md-3 flex align-items-end">
+                    <button className="assign-loc-btn" type="submit">Save</button>
                   </div>
                   <br />
                 </form>
@@ -115,4 +153,5 @@ function LegalDocumentUpload() {
     </div>
   );
 }
+
 export default LegalDocumentUpload;

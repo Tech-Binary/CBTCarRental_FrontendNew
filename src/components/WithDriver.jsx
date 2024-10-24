@@ -1,6 +1,7 @@
 import React, { useState, forwardRef, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import Card from "react-bootstrap/Card";
+import api from "./api";
 import axios from "axios";
 import { Calendar } from "lucide-react";
 import "react-datepicker/dist/react-datepicker.css";
@@ -22,11 +23,17 @@ function WithDriver() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          '/api/Vehicle?branchId=0&currentPageNumber=1&pageSize=50&orderByColNum=1',
+        const response = await api.get(
+          'api/Vehicle',
           {
+            params: {
+              branchId: 0,
+              currentPageNumber: 1,
+              pageSize: 50,
+              orderByColNum: 1,
+            },
             headers: {
-              'Content-Type': 'application/json', // Add the correct Content-Type header
+              'Content-Type': 'application/json',
             },
           }
         );
@@ -46,6 +53,7 @@ function WithDriver() {
   
     fetchData();
   }, []);
+  
   const handleBranchChange = (e) => {
     setBranchId(e.target.value);
     console.log("Selected Branch ID:", e.target.value);

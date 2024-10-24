@@ -1,186 +1,219 @@
 import React, { useState } from "react";
-import Header from "./header";
-import Select from "react-select";
+import axios from "axios"; // Import axios for making API requests
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Dashboard.css";
-import Dashboard from "./Dashboard";
+
 function VehicleMaintainance() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-  const [maintainanceDate, setMaintainanceDate] = useState("");
   const [formData, setFormData] = useState({
-    input1: "",
-    input2: "",
-    input3: "",
-    input4: "",
-    input5: "",
-    input6: "",
-    input7: "",
-    input8: "",
+    vehicleMaintenanceId: 0,
+    branchId: 0, // This can be dynamic if needed
+    startDate: "",
+    cost: "",
+    nextDate: "",
+    returnDate: "",
+    reason: "",
+    description: "",
+    garageName: "",
+    vehicleId: 0, // Adjust as necessary
+    statusFlag: true, // Adjust based on form logic
   });
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
-  const handleDateChange = (e) => {
-    setMaintainanceDate(e.target.value); // Update the date value
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    try {
+      const response = await axios.post("/api/VehicleMaintainance", formData, {
+        headers: {
+          "Content-Type": "application/json", // API expects JSON
+        },
+      });
+
+      console.log("Data submitted successfully:", response.data);
+      
+      // Optionally reset the form
+      setFormData({
+        vehicleMaintenanceId: 0,
+        branchId: 0,
+        startDate: "",
+        cost: "",
+        nextDate: "",
+        returnDate: "",
+        reason: "",
+        description: "",
+        garageName: "",
+        vehicleId: 0,
+        statusFlag: true,
+      });
+    } catch (error) {
+      console.error("Error submitting data:", error);
+    }
   };
+
   return (
     <div className="tab-pane fade active show" id="price-plan" role="tabpanel">
-      <div className="tab-content" style={{marginLeft:"20px"}}>
+      <div className="tab-content" style={{ marginLeft: "20px" }}>
         <div className="tab-pane fade active show">
           <div className="projectContainer">
-            <div class="projectForm bg-light">
+            <div className="projectForm bg-light">
               <div>
                 <h5 className="title">Vehicle Maintainance</h5>
               </div>
               <div>
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="row mb-3">
                     <div className="col-md-3">
                       <input
                         type="text"
                         className="form-control"
-                        id="input1"
-                        name="input1"
-                        value={formData.input1}
+                        id="vehicleId"
+                        name="vehicleId"
+                        value={formData.vehicleId}
                         onChange={handleChange}
                         placeholder="Vehicle Id"
-                        style={{backgroundColor:"#f2f5ff"}}
-                      />
-                    </div>
-                  </div>
-                  <div className="row mb-3 ">
-                    <div className="form-group col-md-3">
-                      <label htmlFor="input1">Date of Maintainance</label>
-                      <input
-                        type="date"
-                        className="form-control"
-                        id="registrationDate"
-                        value={maintainanceDate}
-                        onChange={handleDateChange}
-                        placeholder="Select registration date"
-                        required
-                        style={{backgroundColor:"#f2f5ff", color:"grey"}}
-                      />
-                    </div>
-                    <div className="form-group col-md-3">
-                      <label htmlFor="input2">Cost of Maintainance</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="input2"
-                        name="input2"
-                        value={formData.input2}
-                        onChange={handleChange}
-                        placeholder="Enter Input 2"
-                        style={{backgroundColor:"#f2f5ff"}}
-                      />
-                    </div>
-                    <div className="form-group col-md-3">
-                      <label htmlFor="input3">Next Schedule Maintainance</label>
-                      <input
-                        type="date"
-                        className="form-control"
-                        id="registrationDate"
-                        value={maintainanceDate}
-                        onChange={handleDateChange}
-                        placeholder="Select registration date"
-                        required
-                        style={{backgroundColor:"#f2f5ff", color:"grey"}}
-                      />
-                    </div>
-                    <div className="form-group col-md-3">
-                      <label htmlFor="input4">Expected Return</label>
-                      <input
-                        type="date"
-                        className="form-control"
-                        id="registrationDate"
-                        value={maintainanceDate}
-                        onChange={handleDateChange}
-                        placeholder="Select registration date"
-                        required
-                        style={{backgroundColor:"#f2f5ff", color:"grey"}}
+                        style={{ backgroundColor: "#f2f5ff" }}
                       />
                     </div>
                   </div>
 
                   <div className="row mb-3">
                     <div className="form-group col-md-3">
-                      <label htmlFor="input3">Reason of Maintainance</label>
+                      <label htmlFor="startDate">Date of Maintainance</label>
                       <input
-                        type="text"
+                        type="date"
                         className="form-control"
-                        id="input3"
-                        name="input3"
-                        value={formData.input3}
+                        id="startDate"
+                        name="startDate"
+                        value={formData.startDate}
                         onChange={handleChange}
-                        placeholder="Mention reason here"
-                        style={{backgroundColor:"#f2f5ff"}}
+                        style={{ backgroundColor: "#f2f5ff", color: "grey" }}
                       />
                     </div>
+
                     <div className="form-group col-md-3">
-                      <label htmlFor="input6">Description Of Work Done</label>
+                      <label htmlFor="cost">Cost of Maintainance</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="input4"
-                        name="input4"
-                        value={formData.input4}
+                        id="cost"
+                        name="cost"
+                        value={formData.cost}
                         onChange={handleChange}
-                        placeholder="Description"
-                        style={{backgroundColor:"#f2f5ff"}}
+                        placeholder="Enter cost"
+                        style={{ backgroundColor: "#f2f5ff" }}
                       />
                     </div>
+
                     <div className="form-group col-md-3">
-                      <label htmlFor="input7">Garage name</label>
+                      <label htmlFor="nextDate">Next Scheduled Maintainance</label>
                       <input
-                        type="text"
+                        type="date"
                         className="form-control"
-                        id="input5"
-                        name="input5"
-                        value={formData.input5}
+                        id="nextDate"
+                        name="nextDate"
+                        value={formData.nextDate}
                         onChange={handleChange}
-                        placeholder="Garage Name"
-                        style={{backgroundColor:"#f2f5ff"}}
+                        style={{ backgroundColor: "#f2f5ff", color: "grey" }}
                       />
                     </div>
+
                     <div className="form-group col-md-3">
-                      <label htmlFor="input8">Kms In</label>
+                      <label htmlFor="returnDate">Expected Return Date</label>
                       <input
-                        type="text"
+                        type="date"
                         className="form-control"
-                        id="input6"
-                        name="input6"
-                        value={formData.input6}
+                        id="returnDate"
+                        name="returnDate"
+                        value={formData.returnDate}
                         onChange={handleChange}
-                        placeholder="0km"
-                        style={{backgroundColor:"#f2f5ff"}}
+                        style={{ backgroundColor: "#f2f5ff", color: "grey" }}
                       />
                     </div>
                   </div>
+
                   <div className="row mb-3">
                     <div className="form-group col-md-3">
-                      <label htmlFor="input1">Kms Out</label>
+                      <label htmlFor="reason">Reason for Maintainance</label>
                       <input
                         type="text"
                         className="form-control"
-                        id="input7"
-                        name="input7"
-                        value={formData.input7}
+                        id="reason"
+                        name="reason"
+                        value={formData.reason}
+                        onChange={handleChange}
+                        placeholder="Reason for maintainance"
+                        style={{ backgroundColor: "#f2f5ff" }}
+                      />
+                    </div>
+
+                    <div className="form-group col-md-3">
+                      <label htmlFor="description">Description of Work Done</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="description"
+                        name="description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        placeholder="Description"
+                        style={{ backgroundColor: "#f2f5ff" }}
+                      />
+                    </div>
+
+                    <div className="form-group col-md-3">
+                      <label htmlFor="garageName">Garage Name</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="garageName"
+                        name="garageName"
+                        value={formData.garageName}
+                        onChange={handleChange}
+                        placeholder="Garage Name"
+                        style={{ backgroundColor: "#f2f5ff" }}
+                      />
+                    </div>
+
+                    <div className="form-group col-md-3">
+                      <label htmlFor="input6">Kms In</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="kmsIn"
+                        name="kmsIn"
+                        value={formData.kmsIn}
                         onChange={handleChange}
                         placeholder="0km"
-                        style={{backgroundColor:"#f2f5ff"}}
+                        style={{ backgroundColor: "#f2f5ff" }}
                       />
                     </div>
                   </div>
-                  <br />
-                  <div class="col-md-3 d-flex align-items-end">
-                    <button class="assign-loc-btn">Save</button>
+
+                  <div className="row mb-3">
+                    <div className="form-group col-md-3">
+                      <label htmlFor="kmsOut">Kms Out</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="kmsOut"
+                        name="kmsOut"
+                        value={formData.kmsOut}
+                        onChange={handleChange}
+                        placeholder="0km"
+                        style={{ backgroundColor: "#f2f5ff" }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="col-md-3 d-flex align-items-end">
+                    <button type="submit" className="assign-loc-btn">Save</button>
                   </div>
                   <br />
                 </form>
@@ -192,4 +225,5 @@ function VehicleMaintainance() {
     </div>
   );
 }
+
 export default VehicleMaintainance;

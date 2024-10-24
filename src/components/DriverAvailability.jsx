@@ -3,6 +3,7 @@ import "primeicons/primeicons.css";
 import DatePicker from "react-datepicker";
 import { Calendar } from "lucide-react";
 import Card from "react-bootstrap/Card";
+import api from "./api";
 import axios from "axios";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
@@ -26,27 +27,30 @@ function DriverAvailability() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        // Run both API calls concurrently
-        const [driverResponse, vehicleResponse] = await Promise.all([
-          axios.get("/api/Driver"),
-          axios.get("/api/Vehicle"),
-        ]);
-
-        console.log("Driver API Response:", driverResponse.data);
-        console.log("Vehicle API Response:", vehicleResponse.data);
-
-        // Check if the driver response contains an 'items' array
-        if (driverResponse.data && Array.isArray(driverResponse.data.items)) {
-          setDrivers(driverResponse.data.items); // Set drivers to the 'items' array
+        const response = await api.get(
+          'api/Driver',
+          {
+            params: {
+              branchId: 0,
+              currentPageNumber: 1,
+              pageSize: 50,
+              orderByColNum: 1,
+            },
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+        console.log("Vehicle API Response:", response.data);
+        if (response.data && Array.isArray(response.data.items)) {
+          setDrivers(response.data.items);
         } else {
-          setDrivers([]); // In case 'items' is not an array, set an empty array
+          setDrivers([]);
         }
-
-        // Check if the vehicle response contains an 'items' array
-        if (vehicleResponse.data && Array.isArray(vehicleResponse.data.items)) {
-          setVehicles(vehicleResponse.data.items); // Set vehicles to the 'items' array
+        if (response.data && Array.isArray(response.data.items)) {
+          setVehicles(response.data.items);
         } else {
-          setVehicles([]); // In case 'items' is not an array, set an empty array
+          setVehicles([]);
         }
       } catch (err) {
         console.error("Error fetching data:", err);
@@ -55,9 +59,10 @@ function DriverAvailability() {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
+  
 
   console.log("drivers", drivers);
   const filteredDrivers = drivers.filter((driver) =>

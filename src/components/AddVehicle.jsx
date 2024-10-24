@@ -60,18 +60,18 @@ function AddVehicle() {
   };
 
   // Submit handler for form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Create a form data object
+  const handleSubmit = async () => {
+    // Create a new FormData object
     const formData = new FormData();
+    
+    // Append all form fields to FormData
     formData.append("vehicleName", vehicleName);
     formData.append("vehicleNumber", vehicleNumber);
-    formData.append("selectedYear", selectedYear?.value);
+    formData.append("selectedYear", selectedYear?.value); // If 'selectedYear' is an object, use `.value`
     formData.append("registrationDate", registrationDate);
     formData.append("registrationExpire", registrationExpire);
-    formData.append("selectedFuel", selectedFuel?.value);
-    formData.append("vehicleType", selectedVehicleType?.value);
+    formData.append("selectedFuel", selectedFuel?.value); // Assuming this is an object, use `.value`
+    formData.append("vehicleType", selectedVehicleType?.value); // If 'selectedVehicleType' is an object, use `.value`
     formData.append("chasisNumber", chasisNumber);
     formData.append("company", company);
     formData.append("model", model);
@@ -79,22 +79,38 @@ function AddVehicle() {
     formData.append("insuranceNo", insuranceNo);
     formData.append("lastServiceDate", lastServiceDate);
     formData.append("features", features);
+  
+    // Only append the 'image' if it exists
     if (image) {
-      formData.append("image", image); // Append the image file
+      formData.append("image", image); 
     }
-
+  
     try {
+      // Send the form data using axios POST request
       const response = await axios.post("/api/Vehicle", formData, {
+        params: {
+          branchId: 0,
+          currentPageNumber: 1,
+          pageSize: 50,
+          orderByColNum: 1,
+        },
         headers: {
-          "Content-Type": "multipart/form-data", // Set headers for file upload
+          'Content-Type': 'multipart/form-data', // Use multipart/form-data for file uploads
         },
       });
+    
+      
+      // Log the success response
       console.log("Vehicle data successfully submitted:", response.data);
-      // Optionally, clear the form after successful submission
+  
+      // Optionally, clear the form or reset state after successful submission
+      // resetForm();
     } catch (error) {
+      // Log and handle any errors from the submission
       console.error("Error submitting vehicle data:", error);
     }
   };
+  
 
   return (
     <div className="tab-pane fade active show" id="price-plan" role="tabpanel">
